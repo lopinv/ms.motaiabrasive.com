@@ -1,0 +1,38 @@
+---
+import { SITE } from '../data/site';
+
+// 嵌入式地图 URL 使用中文地址（湖北省咸宁市通城县隽水镇瑜立大道88号，z=17），英文地址在 Google 地图上定位精度不足
+const mapsOpenUrl = 'https://maps.google.com/maps?q=%E6%B9%96%E5%8C%97%E7%9C%81%E5%92%B3%E5%AE%81%E5%B8%82%E9%80%9A%E5%9F%8E%E5%8E%BF%E9%9A%BD%E6%B0%B4%E9%95%87%E7%8E%89%E7%AB%8B%E5%A4%A7%E9%81%9388%E5%8F%B7&z=17';
+const mapsEmbedUrl = `${mapsOpenUrl}&output=embed`;
+---
+
+<section class="section section--alt location-map" data-reveal>
+  <div class="container location-map__grid">
+    <div>
+      <span class="eyebrow">Lokasi kami</span>
+      <h2>Lokasi kilang pada peta</h2>
+      <p>
+        Kilang MoTai terletak di Bandar Junshui, Daerah Tongcheng, Xianning, Hubei,
+        China. Kami mengatur lawatan atau penghantaran setelah mengesahkan spesifikasi
+        dan janji temu dengan pasukan hubungan.
+      </p>
+      <address dir="ltr">{SITE.addressAr}</address>
+      <a
+        href={mapsOpenUrl}
+        target="_blank"
+        rel="noopener nofollow"
+        dir="ltr"
+        class="button button--outline button--sm location-map__link"
+      >
+        Buka dalam Google Maps
+      </a>
+    </div>
+    <iframe
+      class="location-map__frame"
+      src={mapsEmbedUrl}
+      title="Peta lokasi kilang MoTai"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </div>
+</section>

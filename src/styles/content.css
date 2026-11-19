@@ -2116,6 +2116,33 @@ tbody tr:hover th {
   line-height: 1.6;
 }
 
+/* ---------- 地图模块（LocationMap） ---------- */
+.location-map__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.location-map address {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.8;
+  margin-block: 14px 18px;
+}
+
+.location-map__frame {
+  width: 100%;
+  height: clamp(320px, 40vw, 420px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.location-map__link {
+  white-space: nowrap;
+}
+
 /* ---------- 法律页 ---------- */
 .legal-layout {
   display: grid;
@@ -2177,6 +2204,7 @@ tbody tr:hover th {
   .story-grid,
   .company-values,
   .company-contact-band__grid,
+  .location-map__grid,
   .knowledge-hub,
   .product-overview__grid,
   .solution-layout,
