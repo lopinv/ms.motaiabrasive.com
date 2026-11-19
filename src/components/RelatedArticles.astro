@@ -45,8 +45,8 @@ const related = allArticles
 {
   related.length > 0 && (
     <div class="content-block">
-      <span class="eyebrow">Bài viết liên quan</span>
-      <h2>Đọc thêm</h2>
+      <span class="eyebrow">Artikel berkaitan</span>
+      <h2>Baca lagi</h2>
       <div class="article-related-list">
         {related.map((rel) => (
           <a class="article-related-item" href={`/articles/${rel.id}`}>
@@ -57,7 +57,7 @@ const related = allArticles
         ))}
       </div>
       <a class="text-link" href="/articles" style="margin-block-start: 16px; display: inline-flex;">
-        Tất cả bài viết <span aria-hidden="true">→</span>
+        Semua artikel <span aria-hidden="true">→</span>
       </a>
     </div>
   )
