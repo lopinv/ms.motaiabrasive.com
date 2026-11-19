@@ -33,7 +33,7 @@ const productJsonLd = {
   category: model.family,
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Saiz', value: model.sizeAr },
-    { '@type': 'PropertyValue', name: 'Gredan', value: model.gritRange.join(', ') },
+    { '@type': 'PropertyValue', name: 'Gred', value: model.gritRange.join(', ') },
     { '@type': 'PropertyValue', name: 'Jenis asas', value: model.backing },
     { '@type': 'PropertyValue', name: 'Cara pelekatan', value: model.attachment },
   ],
@@ -51,8 +51,8 @@ const faqJsonLd = {
 ---
 
 <Layout
-  title={`${model.name} | MoTai bahan penggera`}
-  description={`${model.name} MoTai: ${model.gritRange.length} gredan tersedia, spesifikasi jelas dan bahan penggera borong. Minta sebut harga untuk saiz dan gredan anda.`}
+  title={`${model.name} | MoTai bahan amplas`}
+  description={`${model.name} MoTai: ${model.gritRange.length} gred tersedia, spesifikasi jelas dan bahan amplas borong. Minta sebut harga untuk saiz dan gred anda.`}
   image={model.image}
   type="product"
   breadcrumbs={breadcrumbs}
@@ -67,13 +67,13 @@ const faqJsonLd = {
         <h1>{model.name}</h1>
         <p>{model.summary}</p>
         <ul class="hero__trust">
-          <li>{model.gritRange.length} gredan</li>
+          <li>{model.gritRange.length} gred</li>
           <li>Spesifikasi disahkan sebelum pengeluaran</li>
           <li>Bekalan borong</li>
         </ul>
         <div class="hero__actions">
           <a class="button button--accent" href={`/quote?product=${model.slug}`}>Minta Sebut Harga</a>
-          <a class="button button--ghost" href="#grit">Lihat Gredan</a>
+          <a class="button button--ghost" href="#grit">Lihat Gred</a>
         </div>
       </div>
       <figure class="product-hero__media">
@@ -88,10 +88,10 @@ const faqJsonLd = {
       <div class="product-overview__main">
         <div class="content-block">
           <span class="eyebrow">Bila saiz ini sesuai?</span>
-          <h2>Satu saiz khusus, julah gredan yang tersedia merangkumi kitaran penghabisan</h2>
+          <h2>Satu saiz khusus, julah gred yang tersedia merangkumi kitaran penghabisan</h2>
           <p>
             {model.summary} Pemilihan saiz yang tepat bermula dari sepadan dengan siri mesin dan
-            cara pelekatan, kemudian kami menetapkan gredan mengikut sifat bahan pembikinan dan
+            cara pelekatan, kemudian kami menetapkan gred mengikut sifat bahan pembuatan dan
             hasil penghabisan yang diingini.
           </p>
           <ul class="check-list check-list--large">
@@ -102,14 +102,14 @@ const faqJsonLd = {
         </div>
 
         <div class="content-block" id="grit">
-          <span class="eyebrow">Gredan</span>
-          <h2>Gredan mana yang sesuai dengan fasa anda?</h2>
+          <span class="eyebrow">Gred</span>
+          <h2>Gred mana yang sesuai dengan fasa anda?</h2>
           <p>
-            Kami senaraikan {model.gritRange.length} gredan yang tersedia untuk saiz ini. Pemilihan
-            yang tepat bergantung pada bahan pembikinan, tekanan dan halaju makan, jadi kami menghantar
+            Kami senaraikan {model.gritRange.length} gred yang tersedia untuk saiz ini. Pemilihan
+            yang tepat bergantung pada bahan pembuatan, tekanan dan halaju makan, jadi kami menghantar
             sampel dahulu sebelum kelulusan kuantiti apabila diperlukan.
           </p>
-          <ul class="grit-grid" aria-label="Gredan yang tersedia">
+          <ul class="grit-grid" aria-label="Gred yang tersedia">
             {model.gritRange.map((grit) => <li>{grit}</li>)}
           </ul>
           <div class="table-wrap">
@@ -118,7 +118,7 @@ const faqJsonLd = {
               <thead><tr><th>Item</th><th>Perincian</th></tr></thead>
               <tbody>
                 <tr><th scope="row">Saiz</th><td>{model.sizeAr}</td></tr>
-                <tr><th scope="row">Gredan</th><td>{model.gritRange.join(', ')}</td></tr>
+                <tr><th scope="row">Gred</th><td>{model.gritRange.join(', ')}</td></tr>
                 <tr><th scope="row">Jenis asas</th><td>{model.backing}</td></tr>
                 <tr><th scope="row">Cara pelekatan</th><td>{model.attachment}</td></tr>
                 <tr><th scope="row">Kumpulan produk</th><td>{model.family}</td></tr>
@@ -126,7 +126,7 @@ const faqJsonLd = {
             </table>
           </div>
           <p class="fine-print">
-            Harga bergantung pada gredan, kuantiti, pembungkusan dan lokasi penghantaran. Spesifikasi
+            Harga bergantung pada gred, kuantiti, pembungkusan dan lokasi penghantaran. Spesifikasi
             terperinci dan kos dihantar bersama sebut harga.
           </p>
         </div>
@@ -154,11 +154,11 @@ const faqJsonLd = {
           <h3>Maklumat berguna untuk pesanan</h3>
           <ul class="check-list">
             <li>Saiz: {model.sizeAr}</li>
-            <li>Gredan yang diminta</li>
+            <li>Gred yang diminta</li>
             <li>Kuantiti dan kekerapan pesanan</li>
             <li>Lokasi penghantaran</li>
           </ul>
-          <a class="text-link" href="/resources/abrasive-grit-guide">Lihat panduan gredan <span>→</span></a>
+          <a class="text-link" href="/resources/abrasive-grit-guide">Lihat panduan gred <span>→</span></a>
         </div>
         {
           siblings.length > 0 && (
@@ -196,7 +196,7 @@ const faqJsonLd = {
         </a>
         <a class="related-card" href="/resources/abrasive-grit-guide">
           <img src="/images/grit-reference.png" alt="" width="320" height="220" loading="lazy" />
-          <div><h3>Panduan Pemilihan Gredan</h3><p>Jadual rujukan yang mengaitkan gredan dengan kerja penghabisan asas.</p><span>Baca panduan →</span></div>
+          <div><h3>Panduan Pemilihan Gred</h3><p>Jadual rujukan yang mengaitkan gred dengan kerja penghabisan asas.</p><span>Baca panduan →</span></div>
         </a>
         <a class="related-card" href="/quality">
           <img src="/images/converting.jpg" alt="" width="320" height="220" loading="lazy" />
@@ -214,6 +214,6 @@ const faqJsonLd = {
 
   <CtaBand
     title={`Minta sebut harga untuk ${model.name}`}
-    text="Hantar saiz, gredan, kuantiti dan lokasi penghantaran. Kami meninjau spesifikasi dan menyediakan sebut harga komersial yang jelas untuk anda."
+    text="Hantar saiz, gred, kuantiti dan lokasi penghantaran. Kami meninjau spesifikasi dan menyediakan sebut harga komersial yang jelas untuk anda."
   />
 </Layout>

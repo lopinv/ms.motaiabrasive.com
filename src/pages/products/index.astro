@@ -9,17 +9,17 @@ const discModels = models.filter((model) => model.categorySlug === 'sanding-disc
 ---
 
 <Layout
-  title="Produk bahan penggera | Tali, cakera dan spons | MoTai"
-  description="Terokai tali penggera, cakera Flap, cakera jaring dan spons penggera MoTai, bersama spesifikasi, aplikasi dan pilihan tersuai untuk membantu menetapkan produk yang sesuai."
+  title="Produk bahan amplas | Tali, cakera dan spons | MoTai"
+  description="Terokai tali amplas, cakera Flap, cakera jaring dan spons amplas MoTai, bersama spesifikasi, aplikasi dan pilihan tersuai untuk membantu menetapkan produk yang sesuai."
   image="/images/workshop.jpg"
 >
   <section class="page-hero page-hero--products">
     <div class="container page-hero__inner">
       <span class="eyebrow eyebrow--light">Katalog produk</span>
-      <h1>Bahan penggera yang direka untuk talian pengeluaran yang lebih stabil</h1>
+      <h1>Bahan amplas yang direka untuk talian pengeluaran yang lebih stabil</h1>
       <p>
         Pilih kategori produk, kemudian tinjau aplikasi, spesifikasi dan pilihan yang tersedia.
-        Jika belum pasti, hantar jenis bahan pembikinan dan kaedah operasi anda, kami akan
+        Jika belum pasti, hantar jenis bahan pembuatan dan kaedah operasi anda, kami akan
         membantu menetapkan spesifikasi.
       </p>
     </div>
@@ -65,15 +65,15 @@ const discModels = models.filter((model) => model.categorySlug === 'sanding-disc
 
         <div class="model-filters" role="group" aria-label="Tapis mengikut kumpulan produk">
           <button class="model-filter is-active" type="button" data-model-filter="all">Semua ({models.length})</button>
-          <button class="model-filter" type="button" data-model-filter="belt">Tali penggera ({beltModels.length})</button>
-          <button class="model-filter" type="button" data-model-filter="disc">Cakera penggera ({discModels.length})</button>
+          <button class="model-filter" type="button" data-model-filter="belt">Tali amplas ({beltModels.length})</button>
+          <button class="model-filter" type="button" data-model-filter="disc">Cakera amplas ({discModels.length})</button>
         </div>
 
         <p class="model-count" data-model-count aria-live="polite">Mempaparkan {models.length} saiz</p>
 
         <div class="model-table" data-model-table>
           <div class="model-table__head" aria-hidden="true">
-            <span>Saiz</span><span>Kumpulan</span><span>Gredan</span><span>Cara pelekatan</span><span></span>
+            <span>Saiz</span><span>Kumpulan</span><span>Gred</span><span>Cara pelekatan</span><span></span>
           </div>
           {
             models.map((model) => (
@@ -96,7 +96,7 @@ const discModels = models.filter((model) => model.categorySlug === 'sanding-disc
           <span class="eyebrow">Belum pasti spesifikasi mana yang sesuai?</span>
           <h2>Mulakan dari aplikasi anda, bukan dari nama produk</h2>
           <p>
-            Maklumkan kepada kami bahan pembikinan, mesin yang digunakan dan jenis penghabisan
+            Maklumkan kepada kami bahan pembuatan, mesin yang digunakan dan jenis penghabisan
             yang diperlukan. Kami membantu menetapkan bentuk alatan, partikel dan asas, kemudian
             menghantar sebut harga yang jelas kepada anda.
           </p>
@@ -108,7 +108,7 @@ const discModels = models.filter((model) => model.categorySlug === 'sanding-disc
         </div>
         <div class="catalog-guide__actions">
           <a class="button button--primary" href="/industries">Terokai penyelesaian</a>
-          <a class="button button--outline" href="/resources/abrasive-grit-guide">Panduan gredan</a>
+          <a class="button button--outline" href="/resources/abrasive-grit-guide">Panduan gred</a>
         </div>
       </div>
     </div>

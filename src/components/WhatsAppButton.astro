@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { product = '', message = '', compact = false } = Astro.props;
-const text = message || `Hai, saya ingin bertanya tentang ${product || 'bahan penggera'} MoTai.`;
+const text = message || `Hai, saya ingin bertanya tentang ${product || 'bahan amplas'} MoTai.`;
 const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
 ---
 

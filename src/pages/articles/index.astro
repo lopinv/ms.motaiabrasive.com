@@ -28,11 +28,11 @@ const categoryLabels: Record<string, string> = {
 
 /** Petaan slug kumpulan produk → nama Bahasa Melayu (padan productCategories site.ts) */
 const familyLabels: Record<string, string> = {
-  'abrasive-belts': 'Tali Penggera',
+  'abrasive-belts': 'Tali Ampelas',
   'flap-discs': 'Cakera Flap',
-  'sanding-discs': 'Cakera Penggera',
+  'sanding-discs': 'Cakera Ampelas',
   'hook-loop': 'Hook & Loop',
-  'sanding-sponges': 'Spons Penggera',
+  'sanding-sponges': 'Spons Ampelas',
 };
 
 const catLabel = (slug: string) => categoryLabels[slug] ?? slug;
@@ -48,9 +48,9 @@ const breadcrumbs = [
 const collectionJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Artikel teknikal | MoTai bahan penggera',
+  name: 'Artikel teknikal | MoTai bahan amplas',
   description:
-    'Pustaka artikel teknikal tentang pemilihan bahan penggera: perbandingan produk, panduan pembelian, spesifikasi dan panduan pembekalan untuk wilayah.',
+    'Pustaka artikel teknikal tentang pemilihan bahan amplas: perbandingan produk, panduan pembelian, spesifikasi dan panduan pembekalan untuk wilayah.',
   url: `${SITE.url}/articles`,
   inLanguage: 'ms',
   publisher: { '@id': `${SITE.url}/#organization` },
@@ -68,8 +68,8 @@ const collectionJsonLd = {
 ---
 
 <Layout
-  title="Artikel teknikal bahan penggera | MoTai"
-  description="Pustaka artikel teknikal: perbandingan tali dan cakera penggera, panduan pembelian dan pembekalan, spesifikasi dan gredan, serta kaedah penyelesaian masalah operasi untuk pembeli industri dalam wilayah."
+  title="Artikel teknikal bahan amplas | MoTai"
+  description="Pustaka artikel teknikal: perbandingan tali dan cakera amplas, panduan pembelian dan pembekalan, spesifikasi dan gred, serta kaedah penyelesaian masalah operasi untuk pembeli industri dalam wilayah."
   image="/images/grit-reference.png"
   breadcrumbs={breadcrumbs}
   jsonLd={[collectionJsonLd]}
@@ -79,11 +79,11 @@ const collectionJsonLd = {
   <section class="page-hero">
     <div class="container page-hero__inner">
       <span class="eyebrow eyebrow--light">Pustaka pengetahuan</span>
-      <h1>Artikel teknikal bahan penggera</h1>
+      <h1>Artikel teknikal bahan amplas</h1>
       <p>
-        {articles.length} artikel teknikal tentang pemilihan gredan, perbandingan produk, panduan
+        {articles.length} artikel teknikal tentang pemilihan gred, perbandingan produk, panduan
         pembelian dan pembekalan, kaedah penyelesaian masalah operasi — ditulis untuk pembeli
-        bahan penggera industri.
+        bahan amplas industri.
       </p>
     </div>
   </section>
