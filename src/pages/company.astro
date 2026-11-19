@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, qualitySteps, companyFacts } from '../data/site';
+---
+
+<Layout
+  title="Tentang Kilang MoTai Bahan Penggera | Pembekal Terus Alatan Industri dari China"
+  description="Kenali MoTai bahan penggera di Hubei, China: pembekal terus tali penggera, cakera penggera dan spons penggera, sokongan bekalan komersial dan pesanan OEM untuk pembeli industri."
+  image="/images/factory.jpg"
+>
+  <section class="page-hero page-hero--image">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Tentang MoTai</span>
+      <h1>Pembekal industri terus dari pusat pengeluaran Hubei</h1>
+      <p>
+        Kami memberi perkhidmatan kepada pembeli industri, pengimport dan pengedar melalui spesifikasi
+        yang jelas, hubungan terus dan langkah persediaan yang telus dari pertanyaan hingga
+        penghantaran.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-grid__content">
+          <span class="eyebrow">Profil syarikat</span>
+          <h2>Hubungan komersial bermula daripada spesifikasi yang jelas</h2>
+          <p>
+            Kami tidak menggunakan satu gambaran umum untuk semua pelanggan. Kami meneliti jenis
+            bahan, kaedah operasi, saiz dan kuantiti, kemudian menetapkan produk, spesifikasi dan
+            perkhidmatan yang diperlukan.
+          </p>
+        </div>
+        <div class="story-grid__media">
+          <img src="/images/workshop.jpg" alt="Bengkel pengeluaran dalam kilang MoTai" width="720" height="520" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="fact-grid">
+        {
+          companyFacts.map((fact) => (
+            <div class="fact-card"><strong>{fact.value}</strong><span>{fact.label}</span></div>
+          ))
+        }
+      </div>
+
+      <div class="company-values">
+        <div class="company-values__intro">
+          <span class="eyebrow">Cara kami bekerja</span>
+          <h2>Tiga prinsip yang mengurus setiap pesanan</h2>
+          <p>Objektif bukan menghantar produk dengan paling pantas, tetapi mencapai spesifikasi yang boleh diulang dan bekalan yang boleh dipercayai.</p>
+        </div>
+        <div class="value-list">
+          <article><span>01</span><h3>Spesifikasi dahulu, transaksi kemudian</h3><p>Kami menetapkan saiz, gredan, asas, kuantiti dan pembungkusan sebelum beralih ke pesanan pengeluaran.</p></article>
+          <article><span>02</span><h3>Sampel apabila diperlukan</h3><p>Pembeli boleh menguji sampel pada talian sendiri sebelum berjanji kuantiti komersial.</p></article>
+          <article><span>03</span><h3>Hubungan terus dengan pembeli</h3><p>Kami mengekalkan saluran terus dengan pasukan pembekalan untuk mempercepatkan proses setelah pertanyaan.</p></article>
+        </div>
+      </div>
+
+      <div class="content-block company-process">
+        <span class="eyebrow">Proses pelaksanaan</span>
+        <h2>Lima fasa dari pertanyaan hingga penghantaran</h2>
+        <div class="process-cards">
+          {
+            qualitySteps.map((step, index) => (
+              <article class="process-card"><span class="process-card__number">{String(index + 1).padStart(2, '0')}</span><h3>{step.title}</h3><p>{step.text}</p></article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--band-3 company-contact-band">
+    <div class="container company-contact-band__grid">
+      <div>
+        <span class="eyebrow eyebrow--light">Lawatan kilang</span>
+        <h2>Melawat kilang atau mengatur jadual lawatan</h2>
+        <p>Lawatan kilang boleh diatur setelah mengesahkan temu janji dan data yang diperlukan dengan pasukan hubungan.</p>
+      </div>
+      <div class="company-contact-band__data">
+        <div><span>Emel</span><a href={`mailto:${SITE.email}`} dir="ltr">{SITE.email}</a></div>
+        <div><span>Telefon & WhatsApp</span><a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener nofollow" dir="ltr">{SITE.phone}</a></div>
+        <div><span>Alamat</span><address>{SITE.addressAr}</address></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Mula mengesahkan MoTai sebagai pembekal anda"
+    text="Hantar spesifikasi atau permintaan sampel. Kami akan menjelaskan maklumat yang diperlukan dan penyelesaian komersial yang sesuai."
+  />
+</Layout>

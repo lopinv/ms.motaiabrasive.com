@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import RelatedArticles from '../../components/RelatedArticles.astro';
+import { resources, SITE } from '../../data/site';
+
+export function getStaticPaths() {
+  return resources.map((resource) => ({ params: { slug: resource.slug }, props: { resource } }));
+}
+
+const { resource } = Astro.props;
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Sumber', href: '/resources' },
+  { name: resource.title, href: `/resources/${resource.slug}` },
+];
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: resource.title,
+  description: resource.description,
+  image: new URL(resource.image, Astro.site).href,
+  inLanguage: 'ms',
+  author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/resources/${resource.slug}` },
+};
+---
+
+<Layout
+  title={`${resource.title} | MoTai bahan penggera`}
+  description={`${resource.title}: maklumat praktikal membantu pasukan pembekalan menetapkan spesifikasi yang tepat, dengan langkah jelas sebelum berhubung dengan MoTai.`}
+  image={resource.image}
+  breadcrumbs={breadcrumbs}
+  jsonLd={[articleJsonLd]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="page-hero page-hero--image">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">{resource.type}</span>
+      <h1>{resource.title}</h1>
+      <p>{resource.description}</p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container resource-layout">
+      <article class="resource-article">
+        <div class="content-block">
+          <span class="eyebrow">Ringkasan praktikal</span>
+          <h2>Apa yang ditakrifkan oleh panduan ini?</h2>
+          <p>
+            {resource.description} Gunakan maklumat ini untuk mempersedia permintaan yang lebih
+            khusus, mengurangkan pusingan pertukaran dan menuju ke spesifikasi serta sebut harga
+            yang sesuai dalam tempoh masa yang lebih singkat.
+          </p>
+        </div>
+        {
+          resource.sections.map((section, index) => (
+            <div class="content-block">
+              <span class="eyebrow">Bahagian {index + 1}</span>
+              <h2>{section.title}</h2>
+              <ol class="numbered-list">
+                {section.items.map((item) => <li>{item}</li>)}
+              </ol>
+            </div>
+          ))
+        }
+        <div class="content-block">
+          <span class="eyebrow">Langkah seterusnya</span>
+          <h2>Tukar maklumat kepada spesifikasi yang boleh dikutip</h2>
+          <p>
+            Setelah selesai menyediakan senarai, hantarnya melalui borang pertanyaan bersama
+            kuantiti dan lokasi penghantaran. Kami akan meninjau dan menjelaskan apa yang
+            sepadan dengan proses anda.
+          </p>
+          <a class="button button--primary" href="/quote">Mula Minta Sebut Harga</a>
+        </div>
+      </article>
+
+      <aside class="resource-sidebar">
+        <div class="sidebar-card">
+          <h3>Maklumat pantas</h3>
+          <dl class="spec-dl">
+            <div><dt>Jenis panduan</dt><dd>{resource.type}</dd></div>
+            <div><dt>Bahasa</dt><dd>Bahasa Melayu</dd></div>
+            <div><dt>Aplikasi</dt><dd>Persediaan permintaan sebut harga</dd></div>
+          </dl>
+        </div>
+        <div class="sidebar-card sidebar-card--soft">
+          <h3>Sumber lain</h3>
+          <ul class="plain-links">
+            {
+              resources
+                .filter((item) => item.slug !== resource.slug)
+                .map((item) => <li><a href={`/resources/${item.slug}`}>{item.title} →</a></li>)
+            }
+            <li><a href="/products/abrasive-belts">Tali Penggera →</a></li>
+            <li><a href="/industries">Penyelesaian industri →</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <RelatedArticles limit={3} />
+    </div>
+  </section>
+
+  <CtaBand title="Ada soalan yang belum ada dalam panduan?" text="Hantar soalan teknikal anda, kami akan menjawabnya bersama cadangan spesifikasi yang sesuai." />
+</Layout>

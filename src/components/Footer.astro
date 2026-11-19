@@ -1,0 +1,112 @@
+---
+import { SITE } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <div class="footer-brand__logo">
+        <img
+          class="brand__logo"
+          src="https://www.motaiabrasive.com/cdn/shop/t/23/assets/logo-charcoal-v18.webp?v=148838984406859227571793254219&width=168"
+          alt="Logo MoTai bahan penggera"
+          width="168"
+          height="168"
+          loading="lazy"
+          decoding="async"
+        />
+        <strong>MoTai bahan penggera</strong>
+      </div>
+      <p>
+        {SITE.legalName} — kilang China terus, pakar dalam tali penggera, cakera flap, cakera
+        penggera dan spons penggera. Kami memberi perkhidmatan kepada pengimport, pengedar dan
+        pasukan pembekalan industri dengan spesifikasi disijilkan dan pesanan OEM tersuai yang
+        dibekalkan.
+      </p>
+      <div class="footer-certs" aria-label="Maklumat pembekal">
+        <span>FACTORY DIRECT</span>
+        <span>OEM / ODM</span>
+        <span>WHOLESALE RFQ</span>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Produk</h3>
+      <ul class="footer-list">
+        <li><a href="/products/abrasive-belts">Tali Penggera</a></li>
+        <li><a href="/products/flap-discs">Cakera Flap</a></li>
+        <li><a href="/products/sanding-discs">Cakera Penggera</a></li>
+        <li><a href="/products/sanding-sponges">Spons Penggera</a></li>
+        <li><a href="/products">Semua saiz tersedia</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Kilang</h3>
+      <ul class="footer-list">
+        <li><a href="/company">Tentang MoTai</a></li>
+        <li><a href="/quality">Jaminan kualiti</a></li>
+        <li><a href="/industries">Penyelesaian industri</a></li>
+        <li><a href="/articles">Artikel teknikal</a></li>
+        <li><a href="/technical-specs">Spesifikasi teknikal</a></li>
+        <li><a href="/shipping-oem">Bekalan dan OEM</a></li>
+        <li><a href="/resources">Sumber teknikal</a></li>
+        <li><a href="/contact">Hubungi kami</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Saluran Pesanan</h3>
+      <div class="footer-contact">
+        <div class="footer-contact__row">
+          <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16">
+            <path
+              fill="currentColor"
+              d="M10 2a5.5 5.5 0 0 0-5.5 5.5c0 4.2 4.6 9.9 5.2 10.6a4 4 0 0 0 .6 0c.6-.7 5.2-6.4 5.2-10.6A5.5 5.5 0 0 0 10 2Zm0 7.8a2.3 2.3 0 1 1 0-4.6 2.3 2.3 0 0 1 0 4.6Z"
+            ></path>
+          </svg>
+          <div>
+            <address>{SITE.addressAr}</address>
+          </div>
+        </div>
+        <div class="footer-contact__row">
+          <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16">
+            <path
+              fill="currentColor"
+              d="M3 4.5A1.5 1.5 0 0 1 4.5 3h11A1.5 1.5 0 0 1 17 4.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 15.5v-11Zm1.8 1.2L10 9.9l5.2-4.2H4.8Z"
+            ></path>
+          </svg>
+          <div>
+            <a href={`mailto:${SITE.email}`} dir="ltr">{SITE.email}</a>
+          </div>
+        </div>
+        <div class="footer-contact__row">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+            <path
+              fill="currentColor"
+              d="M12.04 2a9.9 9.9 0 0 0-8.5 14.94L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 0 1 0 16.2c-1.4 0-2.8-.38-4-1.08l-.29-.17-3.07.88.82-3-.19-.3a8.08 8.08 0 0 1-.1-6.46 8.1 8.1 0 0 1 6.83-6.07Zm-3.2 4.2c-.15 0-.4.06-.6.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.36c.12.15 1.6 2.55 3.96 3.48 1.96.78 2.36.63 2.78.59.43-.04 1.37-.56 1.57-1.1.2-.5.2-1 .14-1.1-.06-.1-.22-.15-.46-.27-.24-.12-1.37-.68-1.58-.76-.21-.08-.36-.12-.52-.12-.15.24-.59.76-.72.92-.13.16-.26.18-.5.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.43-1.43-1.34-1.67-.14-.24-.01-.37.1-.5.11-.1.24-.27.36-.38.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.52-1.26-.72-1.72-.19-.45-.38-.39-.52-.39h-.45Z"
+            ></path>
+          </svg>
+          <div>
+            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener nofollow" dir="ltr">{SITE.phone}</a>
+          </div>
+        </div>
+        <a class="button button--accent button--sm" href="/quote" style="margin-block-start: 6px">
+          Minta Sebut Harga
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© {year} {SITE.legalName} — Hak cipta terpelihara</span>
+    <div class="footer-bottom__links">
+      <a href="/privacy">Polisi Privasi</a>
+      <a href="/sitemap-index.xml">Peta laman</a>
+      <a href={SITE.social.facebook} target="_blank" rel="noopener nofollow">Facebook</a>
+      <a href={SITE.social.instagram} target="_blank" rel="noopener nofollow">Instagram</a>
+    </div>
+  </div>
+</footer>

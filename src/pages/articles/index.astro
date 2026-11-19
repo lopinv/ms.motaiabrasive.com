@@ -1,0 +1,206 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE } from '../../data/site';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime(),
+);
+
+/** Petaan slug kategori → label Bahasa Melayu (lapisan paparan, data kekal slug asal) */
+const categoryLabels: Record<string, string> = {
+  'product-comparison': 'Perbandingan produk',
+  'multi-product-comparison': 'Perbandingan multi produk',
+  'buying-guide': 'Panduan pembelian',
+  'technical-guide': 'Panduan teknikal',
+  'application-guide': 'Panduan aplikasi',
+  'process-tutorial': 'Penjelasan proses',
+  troubleshooting: 'Penyelesaian masalah',
+  'product-spec-detail': 'Perinci spesifikasi',
+  'procurement-guide': 'Panduan pembekalan',
+  'wholesale-oem-guide': 'Borong & OEM',
+  'industry-market': 'Pasaran industri',
+  'gcc-regional-sourcing': 'Pembekalan wilayah',
+  'faq-buyers-guide': 'Soalan pembeli',
+};
+
+/** Petaan slug kumpulan produk → nama Bahasa Melayu (padan productCategories site.ts) */
+const familyLabels: Record<string, string> = {
+  'abrasive-belts': 'Tali Penggera',
+  'flap-discs': 'Cakera Flap',
+  'sanding-discs': 'Cakera Penggera',
+  'hook-loop': 'Hook & Loop',
+  'sanding-sponges': 'Spons Penggera',
+};
+
+const catLabel = (slug: string) => categoryLabels[slug] ?? slug;
+const famLabel = (slug?: string) => (slug ? familyLabels[slug] ?? slug : '');
+
+const categories = [...new Set(articles.map((a) => a.data.category))].sort();
+
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Artikel teknikal', href: '/articles' },
+];
+
+const collectionJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Artikel teknikal | MoTai bahan penggera',
+  description:
+    'Pustaka artikel teknikal tentang pemilihan bahan penggera: perbandingan produk, panduan pembelian, spesifikasi dan panduan pembekalan untuk wilayah.',
+  url: `${SITE.url}/articles`,
+  inLanguage: 'ms',
+  publisher: { '@id': `${SITE.url}/#organization` },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: articles.length,
+    itemListElement: articles.slice(0, 20).map((a, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE.url}/articles/${a.id}`,
+      name: a.data.title,
+    })),
+  },
+};
+---
+
+<Layout
+  title="Artikel teknikal bahan penggera | MoTai"
+  description="Pustaka artikel teknikal: perbandingan tali dan cakera penggera, panduan pembelian dan pembekalan, spesifikasi dan gredan, serta kaedah penyelesaian masalah operasi untuk pembeli industri dalam wilayah."
+  image="/images/grit-reference.png"
+  breadcrumbs={breadcrumbs}
+  jsonLd={[collectionJsonLd]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Pustaka pengetahuan</span>
+      <h1>Artikel teknikal bahan penggera</h1>
+      <p>
+        {articles.length} artikel teknikal tentang pemilihan gredan, perbandingan produk, panduan
+        pembelian dan pembekalan, kaedah penyelesaian masalah operasi — ditulis untuk pembeli
+        bahan penggera industri.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="articles-toolbar" data-articles-toolbar>
+        <label class="articles-search">
+          <span class="sr-only">Cari dalam artikel</span>
+          <svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              d="M9 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm4 9 4 4"
+            ></path>
+          </svg>
+          <input
+            type="search"
+            data-articles-search
+            placeholder="Cari mengikut tajuk atau kata kunci…"
+            aria-label="Cari dalam artikel"
+          />
+        </label>
+        <div class="articles-filters" role="group" aria-label="Tapis mengikut kategori">
+          <button class="model-filter is-active" data-articles-filter="all" type="button">Semua</button>
+          {
+            categories.map((cat) => (
+              <button class="model-filter" data-articles-filter={cat} type="button">
+                {catLabel(cat)}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <p class="articles-count" data-articles-count>{articles.length} artikel</p>
+
+      <div class="articles-grid" data-articles-grid>
+        {
+          articles.map((article) => (
+            <article class="article-card" data-article-card data-category={article.data.category}>
+              <a class="article-card__link" href={`/articles/${article.id}`}>
+                <div class="article-card__meta">
+                  <span class="article-card__tag">{catLabel(article.data.category)}</span>
+                  {article.data.productFamily && (
+                    <span class="article-card__fam">{famLabel(article.data.productFamily)}</span>
+                  )}
+                </div>
+                <h2>{article.data.title}</h2>
+                <p>{article.data.description}</p>
+                <span class="article-card__more">
+                  Baca artikel
+                  <svg aria-hidden="true" viewBox="0 0 20 20" width="14" height="14">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      d="M11 4l6 6-6 6M4 10h12"
+                    ></path>
+                  </svg>
+                </span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="articles-empty" data-articles-empty hidden>
+        Tiada artikel yang sepadan dengan carian anda — cuba kata lain atau nyahaktif tapis.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Belum menemui jawapan dalam artikel?"
+    text="Hantar soalan teknikal anda bersama spesifikasi operasi, kami akan membalas dengan cadangan yang sesuai dengan bahan dan mesin anda."
+  />
+
+  <script>
+    // Senarai artikel: carian pantas + tapis mengikut kategori (sama seperti pelayar model di /products)
+    const toolbar = document.querySelector<HTMLElement>('[data-articles-toolbar]');
+    const grid = document.querySelector<HTMLElement>('[data-articles-grid]');
+    if (toolbar && grid) {
+      const search = toolbar.querySelector<HTMLInputElement>('[data-articles-search]');
+      const filters = Array.from(toolbar.querySelectorAll<HTMLButtonElement>('[data-articles-filter]'));
+      const count = document.querySelector<HTMLElement>('[data-articles-count]');
+      const empty = document.querySelector<HTMLElement>('[data-articles-empty]');
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-article-card]'));
+
+      const apply = () => {
+        const q = (search?.value || '').trim().toLowerCase();
+        const active = filters.find((b) => b.classList.contains('is-active'));
+        const cat = active?.dataset.articlesFilter ?? 'all';
+        let shown = 0;
+        for (const card of cards) {
+          const text = (card.textContent || '').toLowerCase();
+          const matchCat = cat === 'all' || card.dataset.category === cat;
+          const matchQ = !q || text.includes(q);
+          const visible = matchCat && matchQ;
+          card.hidden = !visible;
+          if (visible) shown++;
+        }
+        if (count) count.textContent = shown + ' artikel';
+        if (empty) empty.hidden = shown > 0;
+      };
+
+      search?.addEventListener('input', apply);
+      filters.forEach((btn) =>
+        btn.addEventListener('click', () => {
+          filters.forEach((b) => b.classList.toggle('is-active', b === btn));
+          apply();
+        }),
+      );
+      apply();
+    }
+  </script>
+</Layout>

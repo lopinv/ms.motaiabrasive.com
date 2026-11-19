@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../data/site';
+
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Pengesahan pesanan', href: '/thankyou' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Pengesahan pesanan — MoTai',
+  description:
+    'Permintaan sebut harga telah diterima. Pasukan MoTai meneliti spesifikasi dan membalas dalam 1 hari bekerja melalui saluran yang anda pilih.',
+};
+---
+
+<Layout
+  title="Pengesahan pesanan — MoTai"
+  description="Permintaan sebut harga telah diterima. Pasukan MoTai meneliti spesifikasi dan membalas dalam 1 hari bekerja melalui saluran yang anda pilih (WhatsApp, emel atau telefon)."
+  image="/images/factory.jpg"
+  jsonLd={[jsonLd]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="section thankyou">
+    <div class="container thankyou__inner" data-reveal>
+      <div class="thankyou__card" data-thanks-card>
+        <span class="thankyou__badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <path
+              fill="currentColor"
+              d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.2 14.4-4.6-4.6 1.5-1.5 3.1 3.1 6.5-6.5 1.5 1.5-8 7.9Z"
+            ></path>
+          </svg>
+        </span>
+        <h1>Kami telah menerima permintaan sebut harga anda</h1>
+        <p>
+          Terima kasih atas mesej anda. Pasukan MoTai akan meneliti spesifikasi dan mungkin
+          membalas dengan soalan teknikal ringkas, kemudian menghantar
+          sebut harga komersial melalui saluran yang anda pilih dalam tempoh 1 hari bekerja.
+        </p>
+
+        <div class="thankyou__next" data-thankyou-next hidden>
+          <span class="eyebrow">Kembali ke sumber</span>
+          <a class="button button--outline" href="/" data-return-link>Ke halaman asal</a>
+        </div>
+      </div>
+
+      <div class="thankyou__pipeline">
+        <h2>Apa yang berlaku setelah hantar?</h2>
+        <ol class="funnel-pipeline">
+          <li>
+            <strong>Penilaian awal</strong>
+            <span>Kami memeriksa kesempurnaan spesifikasi dan mungkin bertanya soalan teknikal ringkas.</span>
+          </li>
+          <li>
+            <strong>Sebut harga komersial</strong>
+            <span>Harga, kuantiti pesanan minimum dan terma pembungkusan, bekalan.</span>
+          </li>
+          <li>
+            <strong>Sampel / Pembentangan</strong>
+            <span>Jika anda meminta sampel atau sijil pematuhan, kami akan menyusunnya dalam proses.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="thankyou__actions">
+        <a class="button button--accent" href="/quote">Minta sebut harga lain</a>
+        <a
+          class="button button--whatsapp"
+          href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Hai MoTai, saya telah menghantar permintaan sebut harga dan ingin menjejak statusnya.')}`}
+          target="_blank"
+          rel="noopener nofollow"
+        >
+          Jejaki melalui WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Pengalihan setelah hantar membawa ?from=<halaman sumber> (dibuatkan oleh JS borang ke _next);
+    // semak domain sama kemudian hidupkan pautan «ke halaman sumber», elak pengalihan terbuka
+    const from = new URLSearchParams(location.search).get('from') || '';
+    let safe = '';
+    if (from) {
+      try {
+        const u = new URL(from, location.origin);
+        if (u.origin === location.origin) safe = u.pathname + u.search;
+      } catch {
+        safe = '';
+      }
+    }
+    const box = document.querySelector<HTMLElement>('[data-thankyou-next]');
+    const link = document.querySelector<HTMLAnchorElement>('[data-return-link]');
+    if (box && link && safe) {
+      link.href = safe;
+      box.hidden = false;
+    }
+  </script>
+</Layout>

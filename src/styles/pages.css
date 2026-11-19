@@ -1,0 +1,813 @@
+/* ============================================================
+   Hero — 科技商务风：明亮底色 + 深藏青文字 + 蓝色强调
+   ============================================================ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #f5f7f9 0%, #eceff2 55%, #e3e8ed 100%);
+  color: var(--ink);
+  overflow: hidden;
+  border-block-end: 1px solid var(--line);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.45;
+  filter: grayscale(0.45) contrast(1) brightness(1.08);
+}
+
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* 文字侧（右，RTL）高不透明护底保证可读，图像侧保持透出 */
+  background:
+    linear-gradient(96deg, rgba(243, 245, 247, 0.94) 0%, rgba(243, 245, 247, 0.88) 38%, rgba(243, 245, 247, 0.62) 68%, rgba(243, 245, 247, 0.25) 100%);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.75fr);
+  gap: 48px;
+  align-items: center;
+  padding-block: clamp(56px, 7vw, 96px);
+}
+
+/* 细网格纹理：中性灰蓝坐标纸，克制科技感 */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(46, 86, 111, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 86, 111, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(130% 120% at 78% 40%, transparent 35%, #000 85%);
+  -webkit-mask-image: radial-gradient(130% 120% at 78% 40%, transparent 35%, #000 85%);
+}
+
+.hero__grid {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-block-end: 20px;
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero__flag {
+  padding: 3px 9px;
+  border-radius: var(--r-xs);
+  background: var(--clay-600);
+  color: #fff;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.hero__divider {
+  width: 20px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.hero h1 {
+  margin-block-end: 22px;
+  color: var(--ink);
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.hero__hl {
+  display: block;
+  margin-block-start: 10px;
+  color: var(--brand-600);
+  font-size: 0.66em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hero__lead {
+  max-width: 58ch;
+  margin-block-end: 28px;
+  color: var(--ink-3);
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-block-end: 36px;
+}
+
+.hero__specs {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 0;
+  margin: 0;
+  border-block-start: 1px solid var(--line);
+  padding-block-start: 18px;
+}
+
+.hero__specs > div {
+  padding-inline: 20px;
+  border-inline-start: 1px solid var(--line);
+}
+
+.hero__specs > div:first-child {
+  padding-inline-start: 0;
+  border-inline-start: 0;
+}
+
+.hero__specs dt {
+  margin-block-end: 4px;
+  color: var(--ink-4);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.hero__specs dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* 右侧能力面板：白卡 + 蓝色顶边，替代玻璃拟态 */
+.hero__panel {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  overflow: hidden;
+  box-shadow: var(--sh-2);
+}
+
+.hero__panel::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-600), var(--brand-400));
+}
+
+.hero__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-block-end: 1px solid var(--line);
+  color: var(--ink-4);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero__panel-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--success-600);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.hero__panel-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.hero__panel-body {
+  margin: 0;
+}
+
+.hero__panel-body > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  border-block-end: 1px solid var(--line);
+}
+
+.hero__panel-body dt {
+  color: var(--ink-4);
+  font-size: 0.82rem;
+}
+
+.hero__panel-body dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero__panel-foot {
+  padding: 12px 18px;
+  background: var(--surface-alt);
+}
+
+.hero__panel-foot a {
+  color: var(--brand-600);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.hero__panel-foot a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   Spec strip — 数据条
+   ============================================================ */
+.spec-strip {
+  background: var(--spec-strip);
+  color: var(--spec-strip-fg);
+  border-block-end: 1px solid var(--line);
+}
+
+.spec-strip__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 22px 24px;
+}
+
+.spec-strip__item + .spec-strip__item {
+  border-inline-start: 1px solid var(--line);
+}
+
+.spec-strip__item strong {
+  color: var(--brand-600);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.spec-strip__item span {
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+.spec-strip__item small {
+  color: var(--ink-3);
+  opacity: 0.85;
+  font-size: 0.76rem;
+}
+
+.spec-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ============================================================
+   产品分类卡 — 对齐原站 cs.motaiabrasive.com「产品分类」
+   ============================================================ */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  overflow: hidden;
+  transition: transform 0.18s var(--ease-fast), box-shadow 0.18s var(--ease-fast), border-color 0.18s var(--ease-fast);
+}
+
+.cat-card:hover {
+  box-shadow: var(--sh-3);
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+}
+
+/* 图片区：白底 + contain，产品图居中留白（与原站一致） */
+.cat-card__media {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--paper);
+  padding: 10px;
+  overflow: hidden;
+}
+
+.cat-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s var(--ease);
+}
+
+.cat-card:hover .cat-card__media img {
+  transform: scale(1.04);
+}
+
+.cat-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+  padding: 20px;
+}
+
+.cat-card__no {
+  display: inline-block;
+  margin: 0;
+  color: var(--clay-600);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.cat-card__no::before {
+  display: none;
+}
+
+.cat-card h3 {
+  margin: 0;
+  font-size: 1.06rem;
+}
+
+.cat-desc {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.cat-card__actions {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  margin-block-start: auto;
+  padding-block-start: 12px;
+}
+
+.cat-card__actions .button {
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* 卡片内 WhatsApp 按钮：图标略缩，避免 4 列窄卡拥挤 */
+.cat-card__actions .button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================================
+   Capability — 能力区块
+   ============================================================ */
+.capability {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.capability__media {
+  position: relative;
+}
+
+.capability__media img {
+  width: 100%;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-strong);
+  filter: grayscale(0.12);
+  box-shadow: var(--sh-3);
+}
+
+.capability__stamp {
+  position: absolute;
+  inset-block-end: -16px;
+  inset-inline-start: -16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 18px;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-inline-start: 3px solid var(--brand-600);
+  box-shadow: var(--sh-2);
+}
+
+.capability__stamp strong {
+  color: var(--brand-700);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0.06em;
+}
+
+.capability__stamp span {
+  color: var(--ink-3);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.capability__content > p {
+  color: var(--ink-3);
+}
+
+.process {
+  display: grid;
+  gap: 0;
+  margin-block: 24px 28px;
+  counter-reset: none;
+}
+
+.process li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  padding-block: 13px;
+  border-block-start: 1px solid var(--line);
+}
+
+.process__num {
+  color: var(--clay-600);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.process strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.96rem;
+  margin-block-end: 2px;
+}
+
+.process p {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   应用场景轮播 — 对齐原站 Built for your next finish 区
+   ============================================================ */
+.scenes-section {
+  background: var(--surface-alt);
+}
+
+.scenes__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-block-end: 18px;
+}
+
+.scenes__head h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.scenes__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.scenes__position {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-4);
+  margin-inline-end: 9px;
+  direction: ltr;
+}
+
+.scenes__controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.18s var(--ease-fast), border-color 0.18s var(--ease-fast);
+}
+
+.scenes__controls button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scenes__controls button:hover {
+  border-color: var(--clay-600);
+  background: var(--clay-100);
+  color: var(--clay-700);
+}
+
+.scenes__viewport {
+  overflow: hidden;
+}
+
+.scenes__track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  direction: ltr;
+  border-radius: 10px;
+}
+
+.scenes__track::-webkit-scrollbar {
+  display: none;
+}
+
+.scenes__card {
+  position: relative;
+  display: block;
+  flex: 0 0 calc((100% - 32px) / 3);
+  aspect-ratio: 16 / 9;
+  min-height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #242830;
+  color: #fff;
+  text-decoration: none;
+}
+
+.scenes__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+/* 底部渐变护底，保证白字可读 */
+.scenes__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgba(16, 21, 24, 0.21) 69%, rgba(16, 21, 24, 0.79) 100%);
+  pointer-events: none;
+}
+
+.scenes__card > span {
+  position: absolute;
+  z-index: 1;
+  inset-inline: 20px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.scenes__card > span svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s var(--ease-fast);
+}
+
+.scenes__card:hover img {
+  transform: scale(1.035);
+}
+
+.scenes__card:hover > span svg {
+  transform: translateX(4px);
+}
+
+.scenes__play-icon {
+  display: none;
+}
+
+[data-scenes-pause][aria-pressed='true'] .scenes__pause-icon {
+  display: none;
+}
+
+[data-scenes-pause][aria-pressed='true'] .scenes__play-icon {
+  display: block;
+}
+
+/* ============================================================
+   Process cards
+   ============================================================ */
+.process-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-block-start: 1px solid var(--line);
+  border-block-end: 1px solid var(--line);
+}
+
+.process-card {
+  position: relative;
+  padding: 24px 20px;
+  border-inline-start: 1px solid var(--line);
+}
+
+.process-card:first-child {
+  border-inline-start: 0;
+}
+
+.process-card__num {
+  display: block;
+  margin-block-end: 10px;
+  color: var(--clay-600);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.process-card h3 {
+  margin-block-end: 6px;
+  font-size: 0.96rem;
+}
+
+.process-card p {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.83rem;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   FAQ layout
+   ============================================================ */
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+.faq-layout__intro p {
+  color: var(--ink-3);
+  margin-block-end: 20px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1080px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero__panel {
+    max-width: 460px;
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scenes__card {
+    flex-basis: calc((100% - 16px) / 2);
+  }
+
+  .process-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-card:nth-child(2n + 1) {
+    border-inline-start: 0;
+  }
+
+  .capability {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .capability__media {
+    order: 2;
+  }
+
+  .faq-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .scenes__card {
+    flex-basis: 100%;
+  }
+
+  .hero__specs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 0;
+  }
+
+  .hero__specs > div {
+    padding-inline: 14px;
+  }
+
+  .hero__specs > div:nth-child(odd) {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+
+  .spec-strip__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+    .spec-strip__item {
+      padding: 16px;
+    }
+
+    .spec-strip__item + .spec-strip__item {
+      border-inline-start: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .spec-strip__item:nth-child(odd) {
+      border-inline-start: 0;
+      padding-inline-start: 0;
+    }
+
+    .spec-strip__item:nth-child(n + 3) {
+      border-block-start: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-cards {
+    grid-template-columns: 1fr;
+    border-block-end: 0;
+  }
+
+  .process-card {
+    border-inline-start: 0;
+    border-block-end: 1px solid var(--line);
+  }
+
+  .capability__stamp {
+    inset-inline-start: 12px;
+    inset-block-end: -14px;
+  }
+
+  .hero__cta .button {
+    width: 100%;
+  }
+}

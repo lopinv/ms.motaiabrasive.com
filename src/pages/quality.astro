@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqItem from '../components/FaqItem.astro';
+import { qualitySteps } from '../data/site';
+
+const qualityFaq = [
+  {
+    q: 'Apa yang diperiksa sebelum penghantaran?',
+    a: 'Membanding struktur produk, saiz, jenis partikel, cara pelekatan dan pembungkusan mengikut spesifikasi yang dipersetujui dengan pembeli. Senarai semakan terperinci berbeza mengikut produk dan pesanan.',
+  },
+  {
+    q: 'Bolehkah standard pemeriksaan khusus digunakan?',
+    a: 'Boleh. Kami meneliti permintaan pemeriksaan pada peringkat spesifikasi dan menjelaskan apa yang boleh dilaksanakan dalam proses sebelum kelulusan pesanan pengeluaran.',
+  },
+  {
+    q: 'Adakah laporan atau sijil dibekalkan?',
+    a: 'Dokumen yang sedia ada untuk setiap spesifikasi dan pesanan boleh dijelaskan. Kami tidak mengumumkan sijil atau tuntutan yang belum disahkan, dan mengesahkan setiap permintaan khusus semasa tinjauan pesanan.',
+  },
+  {
+    q: 'Bagaimana proses banding sampel?',
+    a: 'Hantar sampel mengikut spesifikasi yang disahkan, rekodkan maklum balas pembeli tentang pengoperasian dan hasil pemeriksaan sebelum menentukan kuantiti akhir.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: qualityFaq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<Layout
+  title="Jaminan Kualiti dan Pemeriksaan Bahan Penggera | MoTai"
+  description="Kenali fasa kawalan kualiti di MoTai bahan penggera: pengesahan spesifikasi, pemeriksaan sampel, pembikinan, pemeriksaan dan pembungkusan, proses banding penghantaran dengan pembeli."
+  image="/images/converting.jpg"
+  jsonLd={[faqJsonLd]}
+>
+  <section class="page-hero page-hero--image">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Jaminan kualiti</span>
+      <h1>Kualiti bermula daripada spesifikasi, bukan fasa terakhir</h1>
+      <p>
+        Kami meneliti permintaan dengan pembeli, menyimpan sampel, memeriksa produk sebelum
+        memuatkan lot penghantaran. Cara ini menjadikan kesesuaian setiap lot dapat difahami
+        dan ditelusuri.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="quality-intro">
+        <div>
+          <span class="eyebrow">Kaedah pemeriksaan</span>
+          <h2>Lima titik kawalan merangkumi laluan dari pesanan hingga penghantaran</h2>
+          <p>
+            Kami tidak menyediakan sistem pengurusan yang rumit untuk pembeli. Kami menumpukan pada
+            titik pemeriksaan praktikal yang menghalang kesilapan biasa: saiz salah, pelekatan tidak
+            sepadan, dan gredan atau jenis pembungkusan salah.
+          </p>
+        </div>
+        <div class="quality-intro__aside">
+          <strong>Nota penting</strong>
+          <p>
+            Sijil dan pengesahan yang belum diumumkan tidak disebut sebagai ciri. Mana-mana
+            peraturan atau sijil yang diminta pembeli, kami memeriksa sah laku dan menyatakannya
+            jelas dalam sebut harga.
+          </p>
+        </div>
+      </div>
+
+      <div class="quality-steps">
+        {
+          qualitySteps.map((step, index) => (
+            <article class="quality-step">
+              <span class="quality-step__number">{String(index + 1).padStart(2, '0')}</span>
+              <div><h2>{step.title}</h2><p>{step.text}</p></div>
+              <div class="quality-step__check"><span>Periksa</span></div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="content-block checklist-block">
+        <span class="eyebrow">Senarai semakan sebelum kelulusan pesanan</span>
+        <h2>Maklumat yang mengurangkan kesilapan banding</h2>
+        <div class="checklist-grid">
+          <div><strong>Pengenalpastian produk</strong><ul class="check-list"><li>Nama dan jenis</li><li>Saiz atau diameter</li><li>Gredan dan bahan</li></ul></div>
+          <div><strong>Operasi</strong><ul class="check-list"><li>Jenis mesin</li><li>Cara pelekatan</li><li>Bahan pembikinan</li></ul></div>
+          <div><strong>Bekalan</strong><ul class="check-list"><li>Kuantiti</li><li>Pembungkusan dan jenama</li><li>Lokasi dan masa penghantaran</li></ul></div>
+          <div><strong>Pemeriksaan</strong><ul class="check-list"><li>Permintaan sampel</li><li>Standard penerimaan</li><li>Dokumen lot</li></ul></div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <span class="eyebrow">Soalan lazim</span>
+        <h2>Soalan tentang kualiti dan banding</h2>
+        <div class="faq-list">
+          {qualityFaq.map((item) => <FaqItem question={item.q} answer={item.a} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Minta spesifikasi pemeriksaan yang sesuai dengan projek anda"
+    text="Nyatakan permintaan tentang lot, sampel dan pembungkusan. Kami meneliti dan memasukkannya ke dalam fasa kelulusan pesanan."
+  />
+</Layout>

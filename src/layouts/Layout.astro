@@ -1,0 +1,23 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+import '../styles/global.css';
+
+interface Props extends Omit<import('./BaseLayout.astro').Props, 'jsonLd' | 'breadcrumbs'> {
+  jsonLd?: Record<string, unknown>[];
+  breadcrumbs?: { name: string; href: string }[];
+}
+
+const props = Astro.props;
+---
+
+<BaseLayout {...props}>
+  <Header />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+  <BackToTop />
+</BaseLayout>

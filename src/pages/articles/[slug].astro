@@ -1,0 +1,268 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import FaqItem from '../../components/FaqItem.astro';
+import StickyQuote from '../../components/StickyQuote.astro';
+import { SITE, productCategories } from '../../data/site';
+import { models } from '../../data/models';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+
+/** Petaan slug kategori → label Bahasa Melayu */
+const categoryLabels: Record<string, string> = {
+  'product-comparison': 'Perbandingan produk',
+  'multi-product-comparison': 'Perbandingan multi produk',
+  'buying-guide': 'Panduan pembelian',
+  'technical-guide': 'Panduan teknikal',
+  'application-guide': 'Panduan aplikasi',
+  'process-tutorial': 'Penjelasan proses',
+  troubleshooting: 'Penyelesaian masalah',
+  'product-spec-detail': 'Perinci spesifikasi',
+  'procurement-guide': 'Panduan pembekalan',
+  'wholesale-oem-guide': 'Borong & OEM',
+  'industry-market': 'Pasaran industri',
+  'gcc-regional-sourcing': 'Pembekalan wilayah',
+  'faq-buyers-guide': 'Soalan pembeli',
+};
+
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Artikel teknikal', href: '/articles' },
+  { name: article.data.title, href: `/articles/${article.id}` },
+];
+
+/** Produk berkaitan: kumpulan produk kemudian model yang sepadan */
+const familyProduct = productCategories.find((p) => p.slug === article.data.productFamily);
+const familyModels = article.data.productFamily
+  ? models.filter((m) => m.categorySlug === article.data.productFamily).slice(0, 3)
+  : [];
+
+/** Artikel berkaitan: kumpulan sama atau industri sama (tidak kira artikel semasa) */
+const allArticles = await getCollection('articles');
+const relatedArticles = allArticles
+  .filter(
+    (a) =>
+      a.id !== article.id &&
+      (a.data.productFamily === article.data.productFamily ||
+        (a.data.industry && a.data.industry === article.data.industry)),
+  )
+  .slice(0, 3)
+  .map((a) => ({ id: a.id, title: a.data.title, description: a.data.description, category: a.data.category }));
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.data.title,
+  description: article.data.description,
+  image: article.data.featuredImage,
+  inLanguage: 'ms',
+  author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/articles/${article.id}` },
+  datePublished: article.data.publishDate,
+  dateModified: article.data.updatedDate,
+  keywords: article.data.keywords?.join(', '),
+};
+
+const faqJsonLd =
+  article.data.faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: article.data.faq.map((item: { q: string; a: string }) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      }
+    : null;
+
+const dateFmt = new Date(article.data.publishDate).toLocaleDateString('ms-MY', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout
+  title={`${article.data.title} | MoTai`}
+  description={article.data.description}
+  image={article.data.featuredImage}
+  type="article"
+  breadcrumbs={breadcrumbs}
+  jsonLd={[articleJsonLd, faqJsonLd].filter(Boolean) as Record<string, unknown>[]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">{categoryLabels[article.data.category] ?? article.data.category}</span>
+      <h1>{article.data.title}</h1>
+      <p>{article.data.description}</p>
+      <div class="page-hero__meta">
+        <span>MoTai bahan penggera</span>
+        <span>·</span>
+        <span>{dateFmt}</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="reading-progress" data-reading-progress aria-hidden="true"></div>
+
+  <section class="section section--light">
+    <div class="container article-layout">
+      <article class="article-main">
+        <div class="article-body">
+          <Content />
+        </div>
+
+        {
+          article.data.faq.length > 0 && (
+            <div class="content-block">
+              <span class="eyebrow">Soalan lazim</span>
+              <h2>Soalan yang biasa ditanya pembeli sebelum memesan</h2>
+              <div class="faq-list">
+                {article.data.faq.map((item) => (
+                  <FaqItem question={item.q} answer={item.a} />
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        {
+          relatedArticles.length > 0 && (
+            <div class="content-block">
+              <span class="eyebrow">Baca lanjut</span>
+              <h2>Artikel berkaitan</h2>
+              <div class="article-related-list">
+                {relatedArticles.map((rel) => (
+                  <a class="article-related-item" href={`/articles/${rel.id}`}>
+                    <span class="article-related-tag">{categoryLabels[rel.category] ?? rel.category}</span>
+                    <strong>{rel.title}</strong>
+                    <p>{rel.description.slice(0, 120)}…</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )
+        }
+      </article>
+
+      <aside class="article-sidebar">
+        <nav class="sidebar-card article-toc" aria-label="Kandungan artikel" data-article-toc hidden>
+          <h3>Kandungan artikel</h3>
+          <ol data-toc-list></ol>
+        </nav>
+
+        {
+          familyProduct && (
+            <div class="sidebar-card">
+              <h3>Produk berkaitan</h3>
+              <ul class="plain-links">
+                <li>
+                  <a href={`/products/${familyProduct.slug}`}>{familyProduct.name} →</a>
+                </li>
+                {familyModels.map((m) => (
+                  <li>
+                    <a href={`/products/models/${m.slug}`}>{m.name} →</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+
+        {
+          article.data.internalLinks.length > 0 && (
+            <div class="sidebar-card sidebar-card--soft">
+              <h3>Pautan berguna</h3>
+              <ul class="plain-links">
+                {article.data.internalLinks.map((link) => (
+                  <li>
+                    <a href={link.url}>{link.anchorText} →</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+
+        <StickyQuote product={familyProduct?.name} />
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand
+    title={article.data.cta?.text || 'Ada soalan yang belum ada dalam artikel?'}
+    text="Hantar spesifikasi operasi, kuantiti dan lokasi penghantaran, kami membalas dengan sebut harga yang jelas dalam 1 hari bekerja."
+  />
+
+  <script>
+    // Bar kemajuan bacaan di bahagian atas
+    const bar = document.querySelector<HTMLElement>('[data-reading-progress]');
+    if (bar) {
+      const update = () => {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - doc.clientHeight;
+        bar.style.transform = max > 0 ? 'scaleX(' + (window.scrollY / max).toFixed(4) + ')' : 'scaleX(0)';
+      };
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+    }
+
+    // Kandungan artikel (TOC): bina dari tajuk H2 dalam kandungan setelah dirender
+    const tocNav = document.querySelector<HTMLElement>('[data-article-toc]');
+    const tocList = tocNav?.querySelector<HTMLOListElement>('[data-toc-list]');
+    const body = document.querySelector<HTMLElement>('.article-body');
+    if (tocNav && tocList && body) {
+      const slugify = (text: string) => {
+        const base = text
+          .replace(/<[^>]+>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .slice(0, 40);
+        let slug = '';
+        for (const ch of base) {
+          if (/[a-zA-Z0-9\u0600-\u06FF]/.test(ch)) slug += ch;
+          else slug += '-';
+        }
+        return slug.replace(/-+/g, '-').replace(/^-|-$/g, '') || 'section';
+      };
+      const h2s = Array.from(body.querySelectorAll('h2'));
+      if (h2s.length > 2) {
+        h2s.forEach((h2) => {
+          h2.id = slugify(h2.textContent || '');
+        });
+        tocList.innerHTML = h2s
+          .map(
+            (h2, i) =>
+              '<li><a href="#' + h2.id + '">' + (h2.textContent || '').replace(/<[^>]+>/g, '') + '</a></li>',
+          )
+          .join('');
+        tocNav.hidden = false;
+
+        // Sorot bahagian semasa (scrollspy)
+        const links = Array.from(tocList.querySelectorAll('a'));
+        const spy = () => {
+          let current = -1;
+          h2s.forEach((h2, i) => {
+            if (h2.getBoundingClientRect().top < 120) current = i;
+          });
+          links.forEach((a, i) => a.classList.toggle('is-current', i === current));
+        };
+        spy();
+        window.addEventListener('scroll', spy, { passive: true });
+      }
+    }
+  </script>
+</Layout>

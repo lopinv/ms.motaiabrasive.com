@@ -1,0 +1,564 @@
+/* ============================================================
+   Header — 双行企业导航
+   ============================================================ */
+.topbar {
+  background: var(--brand-600);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.76rem;
+  border-block-end: 1px solid var(--brand-500);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 34px;
+  gap: 20px;
+}
+
+.topbar__info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.topbar__badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: var(--r-xs);
+  background: var(--clay-600);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.topbar__links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.topbar__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.82);
+  transition: color 0.15s var(--ease-fast);
+}
+
+.topbar__mail-icon {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.topbar__links a:hover .topbar__mail-icon {
+  color: #fff;
+}
+
+.topbar__links a:hover {
+  color: #fff;
+}
+
+.topbar__sep {
+  width: 1px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.topbar__whatsapp {
+  display: inline-block;
+  flex-shrink: 0;
+  color: #7ee787;
+}
+
+/* Header 主体 */
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 200;
+  background: var(--card);
+  border-block-end: 1px solid var(--line);
+  transition: box-shadow 0.2s var(--ease-fast);
+}
+
+.site-header.is-stuck {
+  box-shadow: 0 2px 12px rgba(20, 24, 28, 0.09);
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  min-height: 70px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+  padding-inline-end: 24px;
+  border-inline-end: 1px solid var(--line);
+}
+
+.brand__logo {
+  display: block;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-sm);
+  object-fit: cover;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand__text strong {
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
+}
+
+.brand__text small {
+  color: var(--ink-3);
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+}
+
+/* 主导航 */
+.primary-nav {
+  flex: 1;
+}
+
+.primary-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.primary-nav a {
+  position: relative;
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.15s var(--ease-fast), background 0.15s var(--ease-fast);
+}
+
+.primary-nav a:hover {
+  background: var(--slate-50);
+  color: var(--ink);
+}
+
+.primary-nav a.is-active {
+  color: var(--brand-700);
+  font-weight: 600;
+}
+
+.primary-nav a.is-active::after {
+  content: '';
+  position: absolute;
+  inset-block-end: 1px;
+  inset-inline: 12px;
+  height: 2px;
+  background: var(--clay-600);
+}
+
+.nav-cta {
+  flex-shrink: 0;
+}
+
+/* 移动端菜单按钮 */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav-toggle__bars {
+  display: grid;
+  gap: 4px;
+  width: 16px;
+}
+
+.nav-toggle__bars i {
+  display: block;
+  height: 2px;
+  background: var(--ink);
+  transition: transform 0.2s var(--ease-fast), opacity 0.2s var(--ease-fast);
+}
+
+.nav-toggle[aria-expanded='true'] .nav-toggle__bars i:first-child {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded='true'] .nav-toggle__bars i:last-child {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* 副导航条：工业信息带 */
+.nav-sub {
+  background: var(--slate-50);
+  border-block-end: 1px solid var(--line);
+}
+
+.nav-sub__inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 32px;
+  color: var(--ink-2);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.nav-sub__inner i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--clay-500);
+}
+
+/* 移动端菜单头部：桌面端隐藏 */
+.nav-mobile-head {
+  display: none;
+}
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 1180px) {
+  .primary-nav a {
+    padding-inline: 9px;
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-main {
+    min-height: 60px;
+    gap: 16px;
+  }
+
+  .nav-toggle {
+    display: flex;
+    margin-inline-start: auto;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .primary-nav {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100dvh;
+    background: var(--card);
+    transform: translateX(-100%);
+    transition: transform 0.28s var(--ease);
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  [dir='rtl'] .primary-nav {
+    transform: translateX(100%);
+  }
+
+  .primary-nav.is-open {
+    transform: translateX(0);
+    box-shadow: 0 0 60px rgba(20, 24, 28, 0.2);
+  }
+
+  .primary-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px 24px 40px;
+  }
+
+  .primary-nav a {
+    padding: 15px 8px;
+    border-block-end: 1px solid var(--line);
+    border-radius: 0;
+    font-size: 1.05rem;
+    font-weight: 500;
+  }
+
+  .primary-nav a.is-active::after {
+    display: none;
+  }
+
+  .primary-nav a.is-active {
+    color: var(--clay-600);
+  }
+
+  /* 移动端菜单头部与关闭按钮 */
+  .nav-mobile-head {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background: var(--card);
+    border-block-end: 1px solid var(--line);
+  }
+
+  .nav-mobile-head__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-mobile-head__brand {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--brand-800);
+  }
+
+  .nav-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-xs);
+    background: var(--card);
+    color: var(--ink-2);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .nav-close__x {
+    position: relative;
+    width: 14px;
+    height: 14px;
+  }
+
+  .nav-close__x::before,
+  .nav-close__x::after {
+    content: '';
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 0;
+    width: 14px;
+    height: 1.5px;
+    background: currentColor;
+  }
+
+  .nav-close__x::before {
+    transform: rotate(45deg);
+  }
+
+  .nav-close__x::after {
+    transform: rotate(-45deg);
+  }
+
+  .nav-sub {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .topbar__inner {
+    justify-content: center;
+    min-height: 30px;
+  }
+
+  .topbar__info > span:not(.topbar__badge) {
+    display: none;
+  }
+
+  .topbar__badge {
+    background: transparent;
+    padding: 0;
+    color: #fff;
+  }
+
+  .topbar__links a:first-child,
+  .topbar__sep {
+    display: none;
+  }
+
+  .brand__text small {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Footer — 企业多栏（浅色商务）
+   ============================================================ */
+.site-footer {
+  /* 浅灰底 + 深藏青文字：与整站科技商务风一致 */
+  background: var(--slate-100);
+  color: var(--ink-3);
+  font-size: 0.88rem;
+  border-block-start: 3px solid var(--brand-600);
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+  gap: 40px;
+  padding-block: 56px 44px;
+}
+
+.footer-brand__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-block-end: 16px;
+}
+
+.footer-brand__logo .brand__logo {
+  width: 40px;
+  height: 40px;
+}
+
+.footer-brand__logo strong {
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.footer-brand p {
+  max-width: 42ch;
+  margin-block-end: 18px;
+  line-height: 1.8;
+  color: var(--ink-3);
+}
+
+.footer-list {
+  display: grid;
+  gap: 9px;
+}
+
+.footer-list a {
+  color: var(--ink-2);
+  transition: color 0.15s var(--ease-fast);
+}
+
+.footer-list a:hover {
+  color: var(--brand-600);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-col h3 {
+  margin-block-end: 16px;
+  padding-block-end: 10px;
+  border-block-end: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-contact {
+  display: grid;
+  gap: 14px;
+}
+
+.footer-contact__row {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.footer-contact__row svg {
+  color: var(--brand-600);
+}
+
+.footer-contact__row a,
+.footer-contact__row address {
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.footer-contact__row a:hover {
+  color: var(--brand-600);
+}
+
+.footer-certs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-start: 18px;
+}
+
+.footer-certs span {
+  padding: 4px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-xs);
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 18px;
+  border-block-start: 1px solid var(--line);
+  color: var(--ink-4);
+  font-size: 0.8rem;
+}
+
+.footer-bottom__links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-bottom__links a {
+  color: var(--ink-3);
+}
+
+.footer-bottom__links a:hover {
+  color: var(--brand-600);
+}
+
+@media (max-width: 1080px) {
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-block: 40px 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

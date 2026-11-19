@@ -1,0 +1,27 @@
+---
+import { SITE } from '../data/site';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+}
+
+const { eyebrow = 'Minta Sebut Harga', title, text } = Astro.props;
+---
+
+<section class="cta-band" aria-labelledby="cta-title">
+  <div class="container cta-band__grid">
+    <div>
+      <span class="eyebrow eyebrow--light">{eyebrow}</span>
+      <h2 id="cta-title">{title}</h2>
+      {text && <p>{text}</p>}
+    </div>
+    <div class="cta-band__actions">
+      <a class="button button--accent" href="/quote">Mula Minta Sebut Harga</a>
+      <a class="button button--ghost" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener nofollow">
+        WhatsApp Terus
+      </a>
+    </div>
+  </div>
+</section>

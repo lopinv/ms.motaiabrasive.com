@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site';
+---
+
+<Layout
+  title="Polisi Privasi | MoTai bahan penggera"
+  description="Polisi privasi laman MoTai bahan penggera: data yang kami kumpul apabila anda menghantar permintaan sebut harga, cara penggunaannya, dan maklumat hubungan yang berkenaan dengan permintaan."
+  image="/images/workshop.jpg"
+>
+  <section class="page-hero page-hero--simple">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Maklumat perundangan</span>
+      <h1>Polisi privasi</h1>
+      <p>Kemas kini terakhir: 16 November 2026</p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container legal-layout">
+      <article class="legal-article">
+        <section>
+          <h2>1. Pengenalan</h2>
+          <p>
+            Polisi ini menjelaskan bagaimana laman MoTai bahan penggera memproses data
+            pengguna yang dihantar, terutamanya ketika menggunakan borang permintaan sebut harga.
+          </p>
+        </section>
+        <section>
+          <h2>2. Data yang kami kumpul</h2>
+          <p>Apabila menghantar borang pertanyaan, kami mungkin mengumpul data berikut:</p>
+          <ul class="check-list">
+            <li>Nama penuh, nama syarikat dan emel.</li>
+            <li>Nombor telefon atau WhatsApp dan negara.</li>
+            <li>Jenis produk, spesifikasi, kuantiti dan lokasi penghantaran.</li>
+            <li>Kandungan nota dan saluran hubungan keutamaan.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>3. Penggunaan data</h2>
+          <p>Data digunakan untuk menjawab soalan, menyediakan spesifikasi, menyiapkan sebut harga dan berhubung tentang sampel atau bekalan. Kami tidak menjual data, dan tidak menggunakannya untuk tujuan pemasaran tanpa persetujuan khas.</p>
+        </section>
+        <section>
+          <h2>4. Pembekal perkhidmatan</h2>
+          <p>
+            Borang dihantar melalui perkhidmatan borang yang disimpan di luar. Hanya apa yang anda
+            isi dalam borang dihantar ke perkhidmatan itu, dan pemprosesannya mematuhi polisi
+            perkhidmatan tersebut. Apabila menggunakan WhatsApp atau emel, data diproses mengikut
+            polisi pembekal.
+          </p>
+        </section>
+        <section>
+          <h2>5. Tempoh penyimpanan</h2>
+          <p>Kami menyimpan data pertanyaan untuk tempoh yang diperlukan untuk menjawab dan mengurus hubungan komersial yang berpotensi, mengikut tanggungjawab akaun dan tempoh undang-undang yang berkuat kuasa.</p>
+        </section>
+        <section>
+          <h2>6. Hak anda</h2>
+          <p>Apabila memenuhi syarat perundangan, anda boleh meminta untuk melihat, meminda atau memadam data anda. Hubungi kami melalui emel di bawah dan nyatakan permintaan dengan jelas.</p>
+        </section>
+        <section>
+          <h2>7. Kemas kini polisi</h2>
+          <p>Kami mungkin mengemas kini polisi ini apabila cara pengumpulan data atau penggunaan borang berubah. Tarikh kemas kini terakhir dipaparkan di bahagian atas halaman.</p>
+        </section>
+      </article>
+      <aside class="legal-sidebar">
+        <div class="sidebar-card">
+          <h3>Maklumat hubungan</h3>
+          <dl class="spec-dl">
+            <div><dt>Syarikat</dt><dd>{SITE.legalName}</dd></div>
+            <div><dt>Emel</dt><dd><a href={`mailto:${SITE.email}`} dir="ltr">{SITE.email}</a></dd></div>
+            <div><dt>Telefon & WhatsApp</dt><dd>
+              <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener nofollow" dir="ltr">{SITE.phone}</a>
+            </dd></div>
+            <div><dt>Alamat</dt><dd><address>{SITE.addressAr}</address></dd></div>
+          </dl>
+        </div>
+        <div class="sidebar-card sidebar-card--soft">
+          <h3>Nota praktikal</h3>
+          <p>Jangan hantar maklumat perbankan, kata laluan atau data peribadi sensitif yang tidak diperlukan untuk menjawab permintaan anda melalui borang.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>

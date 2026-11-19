@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { industries } from '../../data/site';
+---
+
+<Layout
+  title="Penyelesaian penggera mengikut industri | MoTai"
+  description="Penyelesaian bahan penggera untuk pembikinan kayu, penghabisan logam dan penyelenggaraan automotif. Lihat cabaran setiap industri dan cadangan produk serta aplikasi yang sesuai."
+  image="/images/workshop.jpg"
+>
+  <section class="page-hero page-hero--industries">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Penyelesaian mengikut aplikasi</span>
+      <h1>Mulakan dari cabaran operasi, bukan dari nama produk</h1>
+      <p>
+        Setiap industri mempunyai bahan pembikinan dan kaedah operasi yang berbeza. Kami mengaitkan
+        permukaan yang diperlukan, proses dan alatan yang sesuai, supaya cadangan kami boleh
+        dilaksanakan pada talian pengeluaran.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="industry-list">
+        {
+          industries.map((industry, index) => (
+            <article class="industry-row">
+              <div class="industry-row__media">
+                <img src={industry.image} alt="" width="520" height="360" loading="lazy" />
+                <span>0{index + 1}</span>
+              </div>
+              <div class="industry-row__content">
+                <span class="eyebrow">Industri: {industry.name}</span>
+                <h2><a href={`/industries/${industry.slug}`}>{industry.title}</a></h2>
+                <p>{industry.description}</p>
+                <h3>Cabaran utama industri</h3>
+                <ul class="check-list">
+                  {industry.challenges.map((challenge) => <li>{challenge}</li>)}
+                </ul>
+                <a class="button button--outline button--small" href={`/industries/${industry.slug}`}>
+                  Perinci penyelesaian dan bahan
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="catalog-guide">
+        <div>
+          <span class="eyebrow">Permintaan khas</span>
+          <h2>Ada aplikasi yang belum disenaraikan?</h2>
+          <p>
+            Industri lain seperti automotif atau alatan tepat juga mungkin memerlukan pendekatan
+            yang sama untuk menetapkan spesifikasi. Hantar penerangan kerja kepada kami, kami akan
+            menentukan pilihan terdekat.
+          </p>
+        </div>
+        <div class="catalog-guide__actions">
+          <a class="button button--primary" href="/quote">Hantar perincian pesanan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Mulakan dari operasi sebenar anda"
+    text="Bahan pembikinan, jenis mesin dan hasil penghabisan yang diperlukan sudah cukup untuk memulakan. Kami membantu anda menukarnya menjadi spesifikasi yang boleh dibekalkan."
+  />
+</Layout>

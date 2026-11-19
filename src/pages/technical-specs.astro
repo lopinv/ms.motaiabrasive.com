@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqItem from '../components/FaqItem.astro';
+
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Spesifikasi teknikal', href: '/technical-specs' },
+];
+
+/*** Jadual gredan FEPA P (standard antarabangsa objektif) ***/
+const fepaGrades = [
+  { p: 'P40', range: 'Sangat kasar', use: 'Penggeraan pantas bahan mentah' },
+  { p: 'P60', range: 'Kasar', use: 'Penyingkisan cat dan karat' },
+  { p: 'P80', range: 'Kasar sederhana', use: 'Persediaan permukaan sebelum penghabisan' },
+  { p: 'P100', range: 'Sederhana', use: 'Penghabisan awal untuk plat' },
+  { p: 'P120', range: 'Sederhana halus', use: 'Penyalakan runcing' },
+  { p: 'P150', range: 'Halus', use: 'Penghabisan seragam' },
+  { p: 'P180', range: 'Halus', use: 'Persediaan sebelum pelaburan' },
+  { p: 'P240', range: 'Sangat halus', use: 'Pembikinan akhir awal' },
+  { p: 'P320', range: 'Halus', use: 'Penyalakan antara lapisan cat' },
+  { p: 'P400', range: 'Halus', use: 'Pengilapan awal' },
+  { p: 'P600', range: 'Sangat halus', use: 'Pengilapan logam' },
+  { p: 'P800', range: 'Ultra halus', use: 'Pembikinan akhir logam' },
+  { p: 'P1000', range: 'Ultra halus', use: 'Pengilapan cat' },
+  { p: 'P3000', range: 'Ultra halus', use: 'Pengilapan akhir berkilat tinggi' },
+  { p: 'P5000', range: 'Ultra halus', use: 'Pengilapan cermin' },
+];
+
+/*** Tukar unit (objektif) ***/
+const unitConversions = [
+  { from: 'Inci', to: 'mm', ratio: '1 inci = 25.4 mm' },
+  { from: '3 inci', to: '75 mm', ratio: '3 × 25.4' },
+  { from: '4 inci', to: '100 mm', ratio: '4 × 25.4' },
+  { from: '5 inci', to: '125 mm', ratio: '5 × 25.4' },
+  { from: '6 inci', to: '150 mm', ratio: '6 × 25.4' },
+];
+
+/*** Jenis asas (fakta industri) ***/
+const backingTypes = [
+  { type: 'Kertas', desc: 'Fleksibel dan ringan, sesuai permukaan rata dan tali nipis. Ketahanan lembapan terbatas.' },
+  { type: 'Fabrik (katun/poliester)', desc: 'Tahan dan fleksibel, sesuai tali berat dan aplikasi logam. Tahan haba.' },
+  { type: 'Serabut polimer', desc: 'Ketahanan tinggi, kalis koyak dan kalis air. Untuk aplikasi industri berat.' },
+  { type: 'Jaring terbuka', desc: 'Penyingkisan debu semasa penggeraan. Untuk cakera jaring.' },
+];
+
+const grainTypes = [
+  { type: 'Aluminium oksida (Al₂O₃)', desc: 'Paling popular. Sesuai kayu dan logam biasa. Keseimbangan harga dan prestasi yang baik.' },
+  { type: 'Zirkonia (ZrO₂)', desc: 'Lebih keras dan tahan. Sesuai logam keras dan penggeraan berat.' },
+  { type: 'Seramik', desc: 'Prestasi tertinggi. Partikel sentiasa tajam. Untuk proses industri berkadar tinggi.' },
+  { type: 'Silikon karbida (SiC)', desc: 'Tajam dan haus pantas. Sesuai batu, kaca dan pembikinan akhir.' },
+];
+
+const specFaq = [
+  {
+    q: 'Apakah perbezaan gredan FEPA P dan CAMI?',
+    a: 'FEPA P ialah standard Eropah/antarabangsa (diterima di kebanyakan dunia, termasuk kawasan ini), manakala CAMI ialah standard Amerika Syarikat. Dua sistem ini tidak selaras sepenuhnya (contoh: P120 ≈ CAMI 120 tetapi P400 ≠ CAMI 400). Nyatakan FEPA P dalam pesanan untuk mengelakkan kekeliruan.',
+  },
+  {
+    q: 'Jenis partikel mana untuk bahan saya?',
+    a: 'Kayu dan kerja biasa: aluminium oksida. Logam keras dan penggeraan berat: zirkonia. Proses industri berprestasi tinggi: seramik. Batu, kaca dan pembikinan akhir: silikon karbida.',
+  },
+  {
+    q: 'Jenis asas mana paling sesuai untuk aplikasi saya?',
+    a: 'Permukaan rata dan tali nipis: kertas. Tali berat dan logam: fabrik. Persekitaran lembap atau berat: serabut polimer. Penggeraan dengan penyedutan: jaring terbuka.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: specFaq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<Layout
+  title="Spesifikasi teknikal bahan penggera | Jadual FEPA, asas dan partikel | MoTai"
+  description="Rujukan teknikal lengkap: jadual gredan FEPA P penuh, jenis partikel (aluminium oksida/zirkonia/seramik/SiC), jenis asas dan penukaran inci/mm. Data objektif mengikut standard industri antarabangsa."
+  image="/images/grit-reference.png"
+  breadcrumbs={breadcrumbs}
+  jsonLd={[faqJsonLd]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Rujukan teknikal</span>
+      <h1>Spesifikasi teknikal bahan penggera</h1>
+      <p>
+        Jadual rujukan gredan FEPA P, jenis partikel dan asas, penukaran unit —
+        disusun untuk membantu anda menetapkan spesifikasi yang tepat sebelum meminta sebut harga.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+
+      <div class="content-block">
+        <span class="eyebrow">Jadual gredan</span>
+        <h2>Gredan FEPA P dan aplikasi</h2>
+        <p>
+          Standard FEPA P (Federation of European Producers of Abrasives) ialah standard antarabangsa
+          yang diterima untuk menomborkan kekasaran partikel. Semakin besar nombor, semakin halus partikel.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Jadual rujukan gredan FEPA P biasa dari P40 hingga P5000</caption>
+            <thead>
+              <tr><th scope="col">Gredan</th><th scope="col">Kekasaran</th><th scope="col">Aplikasi biasa</th></tr>
+            </thead>
+            <tbody>
+              {fepaGrades.map((g) => (
+                <tr><th scope="row" class="mono">{g.p}</th><td>{g.range}</td><td>{g.use}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="content-block">
+        <span class="eyebrow">Penukaran unit</span>
+        <h2>Menukar inci ke milimeter</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Diameter (inci)</th><th scope="col">Diameter (mm)</th><th scope="col">Cara kira</th></tr></thead>
+            <tbody>
+              {unitConversions.map((u) => (
+                <tr><th scope="row">{u.from}</th><td class="mono">{u.to}</td><td>{u.ratio}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="content-block">
+        <span class="eyebrow">Jenis partikel</span>
+        <h2>Empat jenis partikel penggera utama</h2>
+        <div class="knowledge-hub__grid">
+          {grainTypes.map((g) => (
+            <div class="sidebar-card">
+              <strong>{g.type}</strong>
+              <p>{g.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+
+      <div class="content-block">
+        <span class="eyebrow">Jenis asas</span>
+        <h2>Asas tali dan cakera</h2>
+        <div class="knowledge-hub__grid">
+          {backingTypes.map((b) => (
+            <div class="sidebar-card">
+              <strong>{b.type}</strong>
+              <p>{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="content-block">
+        <span class="eyebrow">Soalan lazim</span>
+        <h2>Soalan teknikal tentang spesifikasi</h2>
+        <div class="faq-list">
+          {specFaq.map((item) => <FaqItem question={item.q} answer={item.a} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Tetapkan spesifikasi anda dengan rujukan ini"
+    text="Pilih gredan, jenis partikel dan asas dari jadual di atas, kemudian hantar melalui borang sebut harga untuk kos yang tepat."
+  />
+</Layout>

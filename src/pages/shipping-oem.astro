@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqItem from '../components/FaqItem.astro';
+
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Bekalan & OEM', href: '/shipping-oem' },
+];
+
+const shippingSteps = [
+  { title: 'Pengesahan spesifikasi', text: 'Menetapkan produk, saiz, gredan, asas, kuantiti dan pembungkusan bersama pembeli sebelum pengeluaran.' },
+  { title: 'Pengeluaran & pembikinan', text: 'Pembikinan mengikut spesifikasi yang disahkan. Anggaran masa pengeluaran: 3–5 minggu setelah kelulusan sampel.' },
+  { title: 'Pembungkusan & persediaan', text: 'Pembungkusan industri atau OEM. Kotak piawai atau tersuai mengikut perjanjian. Dokumen penghantaran disediakan pada fasa ini.' },
+  { title: 'Penghantaran laut/udara', text: 'Laut ke Teluk: 25–35 hari. Udara lebih pantas tetapi lebih mahal. Kami mengatur penghantaran atau FOB mengikut permintaan pembeli.' },
+  { title: 'Customs', text: 'Pengimport menyediakan dokumen import tempatan (SASO/ESMA/GSO mengikut negara). Kami menyediakan COC dan COA untuk membantu pelupusan kastam.' },
+  { title: 'Penghantaran', text: 'Hantar ke pelabuhan atau gudang mengikut terma dagang yang dipersetujui (FOB/CIF/DDP).' },
+];
+
+const oemSteps = [
+  { title: 'Fail jenama', text: 'Pembeli menghantar fail logo (vektor/AI), reka bentuk pembungkusan dan warna jenama.' },
+  { title: 'Tinjauan kebolehlaksanaan', text: 'Kami meninjau permintaan OEM bersama pasukan pengeluaran, menetapkan kesan ke atas MOQ, kos dan masa.' },
+  { title: 'Kelulusan sampel', text: 'Menghasilkan sampel dengan jenama yang diminta untuk pembeli keluluskan sebelum pengeluaran pukal.' },
+  { title: 'Pengeluaran pukal', text: 'Selesai kelulusan, pengeluaran pukal bermula dengan jenama dan pembungkusan yang disahkan.' },
+];
+
+const packagingOptions = [
+  { type: 'Pembungkusan industri', desc: 'Kotak plastik atau kard piawai untuk borong. Sesuai perdagangan & pengedaran.' },
+  { type: 'Pembungkusan OEM', desc: 'Kotak dengan logo pembeli dan percetakan tersuai. Memerlukan fail jenama dan reka bentuk.' },
+  { type: 'Pembungkusan tahan lembap', desc: 'Perlindungan tambahan untuk penghantaran laut jarak jauh. Disyorkan untuk Teluk.' },
+];
+
+const shippingFaq = [
+  {
+    q: 'Berapa lama jumlah masa bekalan dari China ke Teluk?',
+    a: 'Pengeluaran: 3–5 minggu dari pengesahan spesifikasi & sampel. Laut: 25–35 hari. Jumlah anggaran: 6–10 minggu. Udara lebih pantas (5–10 hari) tetapi kos jauh lebih tinggi.',
+  },
+  {
+    q: 'Adakah sijil pematuhan (COC) dan sijil analisis (COA) dibekalkan?',
+    a: 'Ya. COC & COA dibekalkan mengikut spesifikasi produk. Pelaporan sijil tempatan (seperti SASO, ESMA, GSO) adalah tanggungjawab pengimport di negara import, tetapi kami bekerjasama menyediakan dokumen sokongan pelupusan.',
+  },
+  {
+    q: 'Apakah terma penghantaran (Incoterms) yang tersedia?',
+    a: 'FOB (hantar ke atas kapal di pelabuhan China), CIF (harga + insurans + tambang ke pelabuhan destinasi), dan DDP (hantar duti dibayar ke gudang pembeli). Kami mengatur penghantaran melalui rakan logistik atau bekerjasama dengan pendeklaran yang ditunjuk pembeli.',
+  },
+  {
+    q: 'Berapa MOQ untuk pesanan OEM?',
+    a: 'MOQ ditetapkan khusus untuk setiap spesifikasi mengikut produk, jenis penyesuaian dan pembungkusan. Produk piawai mempunyai MOQ lebih rendah; OEM dengan logo & pembungkusan bercetak memerlukan kuantiti yang lebih tinggi. Minta sebut harga untuk angka tepat.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: shippingFaq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<Layout
+  title="Bekalan & OEM dari China ke Teluk | Fasa penghantaran, pembungkusan | MoTai"
+  description="Panduan bekalan lengkap: fasa penghantaran dari China ke Teluk (FOB/CIF/DDP), masa bekalan, pilihan pembungkusan & OEM, dokumen COC/COA. Maklumat praktikal untuk pembeli bahan penggera industri."
+  image="/images/factory.jpg"
+  breadcrumbs={breadcrumbs}
+  jsonLd={[faqJsonLd]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Bekalan & Pembuatan</span>
+      <h1>Bekalan & OEM dari China ke Teluk</h1>
+      <p>
+        Dari pengesahan spesifikasi hingga penghantaran: fasa penghantaran, pilihan pembungkusan,
+        proses OEM, dan dokumen sokongan pelupusan di negara-negara Teluk.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <!--  -->
+      <div class="content-block">
+        <span class="eyebrow">Fasa bekalan</span>
+        <h2>Dari spesifikasi ke penghantaran dalam enam langkah</h2>
+        <ol class="numbered-list">
+          {shippingSteps.map((step) => (
+            <li><strong>{step.title}</strong><p>{step.text}</p></li>
+          ))}
+        </ol>
+      </div>
+
+      <!-- OEM -->
+      <div class="content-block">
+        <span class="eyebrow">Pembuatan jenama pelanggan</span>
+        <h2>Proses OEM dalam empat langkah</h2>
+        <div class="process-cards">
+          {oemSteps.map((step, index) => (
+            <article class="process-card">
+              <span class="process-card__num">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!--  -->
+      <div class="content-block">
+        <span class="eyebrow">Pilihan pembungkusan</span>
+        <h2>Jenis pembungkusan yang tersedia</h2>
+        <div class="knowledge-hub__grid">
+          {packagingOptions.map((p) => (
+            <div class="sidebar-card">
+              <strong>{p.type}</strong>
+              <p>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="content-block">
+        <span class="eyebrow">Soalan lazim</span>
+        <h2>Soalan tentang bekalan & penghantaran</h2>
+        <div class="faq-list">
+          {shippingFaq.map((item) => <FaqItem question={item.q} answer={item.a} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Sedia untuk memulakan pesanan bekalan?"
+    text="Hantar spesifikasi, kuantiti, lokasi penghantaran dan terma penghantaran yang diingini. Kami meninjau dan membalas dengan sebut harga komersial yang jelas."
+  />
+</Layout>

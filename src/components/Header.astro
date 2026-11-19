@@ -1,0 +1,145 @@
+---
+import { SITE, navItems } from '../data/site';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const whatsappBase = `https://wa.me/${SITE.whatsapp}`;
+---
+
+<div class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__info">
+      <span class="topbar__badge">Kilang Terus</span>
+      <span>Bekalan dari Hubei, China · Sijil pematuhan dan pembungkusan mengikut permintaan</span>
+    </div>
+    <div class="topbar__links">
+      <a class="topbar__mail" href={`mailto:${SITE.email}`} dir="ltr">
+        <svg class="topbar__mail-icon" aria-hidden="true" viewBox="0 0 20 20" width="14" height="14">
+          <path
+            fill="currentColor"
+            d="M3 4.5A1.5 1.5 0 0 1 4.5 3h11A1.5 1.5 0 0 1 17 4.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 15.5v-11Zm1.8 1.2L10 9.9l5.2-4.2H4.8Z"
+          ></path>
+        </svg>
+        {SITE.email}
+      </a>
+      <span class="topbar__sep" aria-hidden="true"></span>
+      <a href={whatsappBase} target="_blank" rel="noopener nofollow" dir="ltr">
+        <svg class="topbar__whatsapp" aria-hidden="true" viewBox="0 0 24 24" width="14" height="14">
+          <path
+            fill="currentColor"
+            d="M12.04 2a9.9 9.9 0 0 0-8.5 14.94L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 0 1 0 16.2c-1.4 0-2.8-.38-4-1.08l-.29-.17-3.07.88.82-3-.19-.3a8.08 8.08 0 0 1-.1-6.46 8.1 8.1 0 0 1 6.83-6.07Zm-3.2 4.2c-.15 0-.4.06-.6.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.36c.12.15 1.6 2.55 3.96 3.48 1.96.78 2.36.63 2.78.59.43-.04 1.37-.56 1.57-1.1.2-.55.2-1 .14-1.1-.06-.1-.22-.15-.46-.27-.24-.12-1.37-.68-1.58-.76-.21-.08-.36-.12-.52.12-.15.24-.59.76-.72.92-.13.16-.26.18-.5.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.01-.37.1-.5.11-.1.24-.27.36-.4.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.52-1.26-.72-1.72-.19-.45-.38-.39-.52-.4h-.45Z"
+          ></path>
+        </svg>
+        +86 181 1863 5597
+      </a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header" data-header>
+  <div class="container nav-main">
+    <a class="brand" href="/" aria-label="MoTai bahan penggera — Laman utama">
+      <img
+        class="brand__logo"
+        src="https://www.motaiabrasive.com/cdn/shop/t/23/assets/logo-charcoal-v18.webp?v=148838984406859227571793254219&width=168"
+        alt="Logo MoTai bahan penggera"
+        width="168"
+        height="168"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="brand__text">
+        <strong>MoTai</strong>
+        <small>bahan penggera</small>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle__label">Menu</span>
+      <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i></span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Navigasi utama">
+      <div class="nav-mobile-head">
+        <span class="nav-mobile-head__brand">MoTai bahan penggera</span>
+        <div class="nav-mobile-head__actions">
+          <button class="nav-close" type="button" data-nav-close>
+            <span>Tutup</span>
+            <span class="nav-close__x" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={{ 'is-active': currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) }}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="button button--accent button--sm" href="/quote">
+        Minta Sebut Harga
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-sub" aria-hidden="true">
+    <div class="container nav-sub__inner">
+      <span>Bekalan industri</span>
+      <i></i>
+      <span>Spesifikasi teknikal</span>
+      <i></i>
+      <span>OEM dan jenamaan tersuai</span>
+      <i></i>
+      <span>Penghantaran global</span>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = header?.querySelector('.nav-toggle');
+  const nav = header?.querySelector('.primary-nav');
+
+  const closeMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'false');
+    nav?.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+  };
+
+  header?.querySelector('[data-nav-close]')?.addEventListener('click', closeMenu);
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    nav?.classList.toggle('is-open', !open);
+    document.body.classList.toggle('menu-open', !open);
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) closeMenu();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  const onScroll = () => {
+    header?.classList.toggle('is-stuck', window.scrollY > 8);
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

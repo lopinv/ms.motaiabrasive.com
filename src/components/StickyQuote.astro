@@ -1,0 +1,47 @@
+---
+import { SITE } from '../data/site';
+
+interface Props {
+  product?: string;
+  application?: string;
+}
+
+const { product = '', application = '' } = Astro.props;
+const whatsappText = `Hai MoTai, saya ingin meminta sebut harga${product ? ` produk: ${product}` : ''}${application ? `, aplikasi: ${application}` : ''}. Sila hantar spesifikasi dan harga.`;
+---
+
+<aside class="sticky-quote" aria-label="Permintaan sebut harga pantas">
+  <div class="sticky-quote__body">
+    <strong>Siap untuk mempersediakan spesifikasi anda?</strong>
+    <p>Hantar saiz, kuantiti dan alamat penghantaran, kami akan mengembalikan sebut harga komersial yang jelas.</p>
+    <div class="sticky-quote__actions">
+      <a class="button button--primary button--sm button--block" href="/quote">Minta Sebut Harga</a>
+      <a
+        class="button button--whatsapp button--sm button--block"
+        href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(whatsappText)}`}
+        target="_blank"
+        rel="noopener nofollow"
+      >
+        WhatsApp Terus
+      </a>
+    </div>
+    <div class="sticky-quote__social">
+      <a
+        href={SITE.social.instagram}
+        target="_blank"
+        rel="noopener nofollow"
+        aria-label="Instagram"
+        dir="ltr"
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15">
+          <path
+            fill="currentColor"
+            d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.5.2-1.9.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.4-.2.9-.3 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.5.3 1.9.2.5.4.8.7 1.1.3.3.6.5 1.1.7.4.1.9.2 1.9.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.5-.2 1.9-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.4.2-.9.3-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.5-.3-1.9a2.9 2.9 0 0 0-.7-1.1c-.3-.3-.6-.5-1.1-.7-.4-.1-.9-.2-1.9-.3-1.2-.1-1.6-.1-4.7-.1Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-2.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"
+          ></path>
+        </svg>
+        <span>motai_1_</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</aside>

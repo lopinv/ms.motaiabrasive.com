@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { productCategories } from '../data/site';
+---
+
+<Layout
+  title="Halaman tidak wujud | MoTai bahan penggera"
+  description="Halaman yang anda minta tidak wujud. Anda boleh kembali ke katalog produk, terokai penyelesaian industri, atau menghantar permintaan sebut harga terus kepada MoTai."
+  noindex
+>
+  <section class="page-hero page-hero--simple">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Ralat 404</span>
+      <h1>Halaman yang anda minta tidak wujud</h1>
+      <p>
+        Mungkin halaman telah dipindahkan atau pautan dieja salah. Gunakan pintasan di bawah untuk
+        ke katalog produk atau menghantar permintaan sebut harga terus.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-heading section-heading--center">
+        <span class="eyebrow">Pintasan pantas</span>
+        <h2>Anda mahu ke mana?</h2>
+      </div>
+
+      <div class="catalog-grid">
+        {
+          productCategories.map((product) => (
+            <article class="catalog-card">
+              <div class="catalog-card__media">
+                <img src={product.image} alt={`MoTai ${product.name}`} width="560" height="420" loading="lazy" />
+              </div>
+              <div class="catalog-card__body">
+                <h2><a href={`/products/${product.slug}`}>{product.name}</a></h2>
+                <p>{product.description}</p>
+                <a class="button button--outline button--small" href={`/products/${product.slug}`}>
+                  Spesifikasi penuh
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="catalog-guide">
+        <div>
+          <span class="eyebrow">Belum menemui apa yang anda cari?</span>
+          <h2>Hantar spesifikasi anda kepada kami, kami akan membimbing anda</h2>
+          <p>
+            Nyatakan jenis produk, saiz, kuantiti dan lokasi penghantaran. Kami meneliti permintaan
+            dan mencadangkan spesifikasi yang paling sesuai dengan proses anda.
+          </p>
+        </div>
+        <div class="catalog-guide__actions">
+          <a class="button button--primary" href="/quote">Minta Sebut Harga</a>
+          <a class="button button--outline" href="/contact">Hubungi kami</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Biarkan kami membantu anda sampai ke destinasi" text="Hubungi kami terus melalui WhatsApp, kami akan membimbing anda kepada produk atau spesifikasi yang sesuai." />
+</Layout>

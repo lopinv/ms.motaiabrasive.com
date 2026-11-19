@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import FaqItem from '../../components/FaqItem.astro';
+import StickyQuote from '../../components/StickyQuote.astro';
+import RelatedArticles from '../../components/RelatedArticles.astro';
+import { industries, productCategories } from '../../data/site';
+
+export function getStaticPaths() {
+  return industries.map((industry) => ({ params: { slug: industry.slug }, props: { industry } }));
+}
+
+const { industry } = Astro.props;
+const recommended = productCategories.filter((product) => (industry.products as readonly string[]).includes(product.slug));
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Industri', href: '/industries' },
+  { name: industry.name, href: `/industries/${industry.slug}` },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: industry.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<Layout
+  title={`${industry.title} | Penyelesaian industri MoTai`}
+  description={`Penyelesaian penggera ${industry.name} MoTai: cabaran operasi, produk dicadangkan, langkah menetapkan spesifikasi dan maklumat persediaan permintaan sebut harga.`}
+  image={industry.image}
+  breadcrumbs={breadcrumbs}
+  jsonLd={[faqJsonLd]}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="page-hero page-hero--image">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Penyelesaian industri {industry.name}</span>
+      <h1>{industry.title}</h1>
+      <p>{industry.description}</p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container solution-layout">
+      <div class="solution-main">
+        <div class="content-block">
+          <span class="eyebrow">Cabaran operasi</span>
+          <h2>Apa yang membuatkan pemilihan bahan sukar dalam industri ini?</h2>
+          <p>
+            Kualiti produk akhir bergantung pada konsistensi proses penggeraan dari permulaan
+            hingga langkah pembikinan terakhir. Justeru kami bukan hanya menghantar satu alat
+            am; kami meninjau cabaran operasi, kemudian mengaitkan dengan bahan penggera, bentuk
+            alat dan gredan yang sesuai.
+          </p>
+          <div class="challenge-list">
+            {
+              industry.challenges.map((challenge, index) => (
+                <div><span>0{index + 1}</span><p>{challenge}</p></div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="content-block">
+          <span class="eyebrow">Rancangan pemilihan</span>
+          <h2>Bagaimana kami menetapkan spesifikasi yang sesuai?</h2>
+          <ol class="selection-steps">
+            <li><strong>Tentukan permukaan pembikinan</strong><p>Kami mengetahui jenis kayu atau logam, keadaan permukaan, sisa atau kecacatan pembikinan.</p></li>
+            <li><strong>Tinjau kaedah operasi</strong><p>Kami meninjau siri mesin, jenis pelekatan, tekanan dan halaju tarikan.</p></li>
+            <li><strong>Pilih bahan dan gredan</strong><p>Kami menetapkan jenis partikel dan gredan yang sepadan dengan fasa penggeraan atau penghabisan.</p></li>
+            <li><strong>Ujian sampel</strong><p>Sampel dihantar atau spesifikasi diuji sebelum kelulusan kuantiti komersial.</p></li>
+          </ol>
+        </div>
+
+        <div class="content-block">
+          <span class="eyebrow">Soalan lazim</span>
+          <h2>Soalan tentang operasi {industry.name}</h2>
+          <div class="faq-list">
+            {industry.faq.map((item) => <FaqItem question={item.q} answer={item.a} />)}
+          </div>
+        </div>
+      </div>
+
+      <aside class="solution-sidebar">
+        <StickyQuote application={industry.name} />
+        <div class="sidebar-card">
+          <h3>Produk dicadangkan</h3>
+          <ul class="sidebar-products">
+            {
+              recommended.map((product) => (
+                <li>
+                  <a href={`/products/${product.slug}`}>
+                    <img src={product.image} alt="" width="72" height="54" loading="lazy" />
+                    <span><strong>{product.name}</strong><small>Lihat spesifikasi →</small></span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="sidebar-card sidebar-card--soft">
+          <h3>Sebelum meminta sebut harga</h3>
+          <p>Hantar jenis bahan pembikinan, mesin, saiz yang diminta, kuantiti dan lokasi penghantaran.</p>
+          <a class="text-link" href="/resources/abrasive-grit-guide">Panduan pemilihan gredan <span>→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <div class="section-heading section-heading--split">
+        <div>
+          <span class="eyebrow">Penyelesaian industri lain</span>
+          <h2>Terokai penyelesaian industri lain</h2>
+        </div>
+        <a class="button button--outline" href="/industries">Semua penyelesaian</a>
+      </div>
+      <div class="related-grid">
+        {
+          industries
+            .filter((item) => item.slug !== industry.slug)
+            .map((item) => (
+              <a class="related-card" href={`/industries/${item.slug}`}>
+                <img src={item.image} alt="" width="320" height="220" loading="lazy" />
+                <div><h3>{item.name}</h3><p>{item.description}</p><span>Lihat penyelesaian →</span></div>
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <RelatedArticles industry={industry.slug} />
+    </div>
+  </section>
+
+  <CtaBand
+    title={`Bina penyelesaian penggera untuk ${industry.name}`}
+    text="Terangkan kepada kami bahagian operasi yang menghadapi masalah. Kami meninjau spesifikasi dan mencadangkan bahan serta ujian yang sesuai."
+  />
+</Layout>

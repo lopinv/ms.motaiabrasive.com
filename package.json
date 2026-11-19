@@ -1,0 +1,27 @@
+{
+  "name": "ar-motai-abrasives",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Laman web rasmi Bahasa Melayu bagi kilang MoTai bahan penggera",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check && node scripts/quality-check.mjs && node scripts/link-check.mjs && node scripts/audit-urls.mjs",
+    "check:site": "node scripts/homogeneity-audit.mjs --gate && node scripts/quality-check.mjs && node scripts/link-check.mjs && node scripts/audit-urls.mjs",
+    "check:links": "node scripts/check-all-links.mjs",
+    "check:homogeneity": "node scripts/homogeneity-audit.mjs",
+    "dedupe:delete": "node scripts/delete-duplicate-articles.mjs",
+    "dedupe:delete:execute": "node scripts/delete-duplicate-articles.mjs --execute"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "8.1.6",
+    "@astrojs/sitemap": "3.7.5",
+    "astro": "7.4.12"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "typescript": "5.9.3"
+  }
+}

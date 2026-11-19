@@ -1,0 +1,416 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqItem from '../components/FaqItem.astro';
+import { productCategoryLines, applicationScenes, companyFacts, qualitySteps } from '../data/site';
+
+const homeFaq = [
+  {
+    q: 'Bagaimana saya meminta sebut harga dari MoTai?',
+    a: 'Hantar borang pertanyaan jenis produk, saiz, kuantiti dan lokasi penghantaran, atau hubungi terus melalui WhatsApp. Kami meneliti spesifikasi dan membalas dengan perincian komersial yang sesuai.',
+  },
+  {
+    q: 'Boleh bekalkan produk dengan jenama sendiri?',
+    a: 'Boleh. OEM boleh dinilai pada peringkat spesifikasi. Hantar fail logo, maklumat pembungkusan dan lokasi untuk mengesahkan kebolehlaksanaan dan kos sebelum pengeluaran.',
+  },
+  {
+    q: 'Adakah sampel dihantar sebelum pesanan?',
+    a: 'Boleh, bergantung pada jenis produk dan perjanjian komersial. Kos sampel dan penghantaran ditentukan setelah meneliti permintaan anda.',
+  },
+  {
+    q: 'Maklumat apa yang diperlukan untuk sebut harga yang lebih pantas?',
+    a: 'Jenis produk, saiz atau diameter, gredan atau bahan, jenis pelekatan, kuantiti, lokasi penghantaran dan kekerapan pesanan yang dijangkakan.',
+  },
+];
+
+const heroSpecs = [
+  { label: 'Kilang', value: 'Hubei, China' },
+  { label: 'Kepakaran', value: 'Bahan penggera industri' },
+  { label: 'Perkhidmatan pesanan', value: 'OEM / ODM' },
+  { label: 'Minimum', value: 'Mengikut spesifikasi' },
+];
+
+const spotlight = [
+  { value: '533–2200', label: 'mm · Saiz tali', note: '4 saiz tersedia' },
+  { value: '40–5000', label: 'Julah gredan', note: 'Sampai gredan pembikinan akhir' },
+  { value: '4', label: 'Diameter cakera', note: '3, 4, 5 dan 6 inci' },
+  { value: '5', label: 'Kumpulan produk', note: 'Tali, Flap, penggera, Hook & Loop, spons' },
+];
+---
+
+<Layout
+  title="MoTai bahan penggera | Kilang terus tali dan cakera penggera industri"
+  description="Kilang MoTai di Hubei, China: bekalan terus tali penggera (533–2200 mm), cakera Flap, cakera penggera dan spons penggera. Spesifikasi disijilkan, pesanan OEM dan kuantiti borong untuk pengimport industri."
+  image="/images/factory.jpg"
+>
+  <Fragment slot="head">
+    <!-- Prestasi: premuat awal unsur LCP (imej latar hero) -->
+    <link rel="preload" as="image" href="/images/factory.jpg" fetchpriority="high" />
+  </Fragment>
+
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <img src="/images/factory.jpg" alt="" width="1920" height="1080" fetchpriority="high" />
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="container hero__grid">
+      <div class="hero__main">
+        <div class="hero__eyebrow">
+          <span class="hero__flag">HUBEI · CN</span>
+          <span class="hero__divider" aria-hidden="true"></span>
+          <span>Kilang terus · Bekalan industri</span>
+        </div>
+
+        <h1>
+          Bahan penggera industri
+          <span class="hero__hl">dihasil mengikut spesifikasi yang sepadan dengan talian anda</span>
+        </h1>
+
+        <p class="hero__lead">
+          Tali penggera empat saiz (533 hingga 2200 mm), cakera Flap, cakera penggera dan spons
+          penggera. Kami menetapkan jenis partikel, asas dan jenis pelekatan bersama pasukan anda
+          sebelum beralih ke pengeluaran, dan membekalkan pesanan OEM serta borong kepada pengimport.
+        </p>
+
+        <div class="hero__cta">
+          <a class="button button--accent button--lg" href="/quote">
+            Minta Sebut Harga
+            <span aria-hidden="true">→</span>
+          </a>
+          <WhatsAppButton />
+          <a class="button button--ghost button--lg" href="/products">Lihat Saiz</a>
+        </div>
+
+        <dl class="hero__specs">
+          {
+            heroSpecs.map((item) => (
+              <div>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+
+      <aside class="hero__panel" aria-label="Ringkasan keupayaan">
+        <div class="hero__panel-head">
+          <span>Khidmat kilang</span>
+          <span class="hero__panel-status"><i aria-hidden="true"></i> Sedia menerima pesanan</span>
+        </div>
+        <dl class="hero__panel-body">
+          {
+            companyFacts.map((fact) => (
+              <div>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="hero__panel-foot">
+          <a href="/quality">Mekanisme kawalan kualiti →</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="spec-strip" data-reveal aria-label="Keupayaan kilang digital">
+    <div class="container spec-strip__grid">
+      {
+        spotlight.map((item) => (
+          <div class="spec-strip__item">
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+            <small>{item.note}</small>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section section--alt" data-reveal>
+    <div class="container">
+      <div class="section-heading section-heading--bar">
+        <div>
+          <span class="eyebrow">Produk</span>
+          <h2>Kategori produk</h2>
+          <p>Empat kumpulan pengguna spesifikasi disijilkan, bekalan terus dari kilang kepada pengimport, pedagang dan jenama sendiri.</p>
+        </div>
+        <a class="button button--outline button--sm" href="/products">
+          Semua produk
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="cat-grid">
+        {
+          productCategoryLines.map((line) => (
+            <article class="cat-card">
+              <a class="cat-card__media" href={line.href} aria-label={line.name}>
+                <img src={line.image} alt={line.name} width="600" height="450" loading="lazy" />
+              </a>
+              <div class="cat-card__body">
+                <span class="eyebrow cat-card__no" aria-hidden="true">{line.no}</span>
+                <h3>{line.name}</h3>
+                <p class="cat-desc">{line.description}</p>
+                <div class="cat-card__actions">
+                  <WhatsAppButton compact product={line.name} />
+                  <a class="button button--accent button--sm" href={`/quote?product=${line.slug}`}>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+                      <path
+                        fill="currentColor"
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5 8 5V8z"
+                      ></path>
+                    </svg>
+                    Minta Sebut Harga
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="container capability">
+      <div class="capability__media">
+        <img src="/images/factory.jpg" alt="Pusat kilang bahan penggera MoTai di Hubei, China" width="900" height="600" loading="lazy" />
+        <div class="capability__stamp">
+          <strong>Kilang MoTai</strong>
+          <span>Bekalan terus</span>
+        </div>
+      </div>
+
+      <div class="capability__content">
+        <span class="eyebrow">Cara kami bekerja</span>
+        <h2>Spesifikasi dahulu, kemudian sahaja beralih ke pengeluaran</h2>
+        <p>
+          Tidak memulakan pembikinan sebelum menetapkan jenis, saiz, gredan, asas dan jenis pelekatan.
+          Cara ini mengurangkan kesilapan banding dan menjadikan setiap lot boleh ditelusuri dan
+          diteliti.
+        </p>
+
+        <ol class="process">
+          {
+            qualitySteps.map((step, index) => (
+              <li>
+                <span class="process__num">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <strong>{step.title}</strong>
+                  <p>{step.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <a class="button button--primary" href="/quality">Perinci mekanisme pemeriksaan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt scenes-section" data-reveal data-scenes-carousel>
+    <div class="container">
+      <div class="scenes__head">
+        <h2>Direka untuk penghabisan seterusnya anda.</h2>
+        <div class="scenes__controls">
+          <span class="scenes__position" aria-hidden="true">1 / {applicationScenes.length}</span>
+          <button type="button" data-scenes-prev aria-label="Senario sebelum">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6" /></svg>
+          </button>
+          <button type="button" data-scenes-next aria-label="Senario selepas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6" /></svg>
+          </button>
+          <button
+            type="button"
+            data-scenes-pause
+            aria-pressed="false"
+            data-pause-label="Jeda automatik"
+            data-play-label="Teruskan automatik"
+            aria-label="Jeda automatik"
+          >
+            <svg class="scenes__pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14" /></svg>
+            <svg class="scenes__play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5Z" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container scenes__viewport">
+      <div class="scenes__track" tabindex="0" role="group" aria-label="Senario aplikasi">
+        {
+          applicationScenes.map((scene) => (
+            <a class="scenes__card" href={scene.href} aria-label={`${scene.title}`}>
+              <img src={scene.image} alt={scene.title} width="800" height="450" loading="lazy" />
+              <span>
+                {scene.title}
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10" /></svg>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-reveal>
+    <div class="container">
+      <div class="section-heading section-heading--center">
+        <span class="eyebrow eyebrow--plain">Proses pesanan</span>
+        <h2>Dari permintaan pertama hingga penghantaran lot</h2>
+        <p>Setiap fasa menjawab satu soalan khusus, mengurangkan sangkaan dalam pertukaran komersial.</p>
+      </div>
+
+      <div class="process-cards">
+        {
+          qualitySteps.map((step, index) => (
+            <article class="process-card">
+              <span class="process-card__num">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container faq-layout">
+      <div class="faq-layout__intro">
+        <span class="eyebrow">Soalan lazim</span>
+        <h2>Jawapan terus untuk pembeli bahan</h2>
+        <p>
+          Belum menemui jawapan? Hantar jenis aplikasi, kami akan menghantar senarai spesifikasi yang
+          diperlukan untuk mempercepatkan sebut harga.
+        </p>
+        <a class="button button--outline" href="/contact">Hubungi pasukan kami</a>
+      </div>
+      <div class="faq-list">
+        {homeFaq.map((item) => <FaqItem question={item.q} answer={item.a} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Hantar spesifikasi anda, kami membalas pilihan yang boleh dibekalkan"
+    text="Kongsi jenis produk, saiz, kuantiti dan lokasi penghantaran. Kami meneliti permintaan dan mencadangkan spesifikasi yang paling sesuai sebelum menghantar sebut harga."
+  />
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'schema.org',
+      '@type': 'FAQPage',
+      mainEntity: homeFaq.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    })}
+  ></script>
+
+  <script>
+    // Senario aplikasi: jalur mendatar automatik (logique motai-applications: 6s automatik, berhenti semasa skrol/tangkapan/khidmat luar)
+    document.querySelectorAll('[data-scenes-carousel]').forEach((root) => {
+      const track = root.querySelector('.scenes__track') as HTMLElement;
+      if (!track) return;
+      const cards = Array.prototype.slice.call(track.children);
+      const prev = root.querySelector<HTMLButtonElement>('[data-scenes-prev]');
+      const next = root.querySelector<HTMLButtonElement>('[data-scenes-next]');
+      const pause = root.querySelector<HTMLButtonElement>('[data-scenes-pause]');
+      const position = root.querySelector<HTMLElement>('.scenes__position');
+      const motion = matchMedia('(prefers-reduced-motion: reduce)');
+      let index = 0;
+      let paused = motion.matches;
+      let hover = false;
+      let focused = false;
+      let visible = false;
+      let timer: ReturnType<typeof setInterval> | undefined;
+
+      // Titik henti (posisi mendatar) antara permulaan jalur dan kad akhir
+      function stops() {
+        const step = (cards[1] && cards[1].offsetLeft - cards[0].offsetLeft) || track.clientWidth;
+        const max = Math.max(0, track.scrollWidth - track.clientWidth);
+        const points = [];
+        for (let x = 0; x < max - 2; x += step) points.push(x);
+        points.push(max);
+        return points;
+      }
+
+      function update() {
+        const points = stops();
+        index = points.reduce(
+          (best, p, i) => (Math.abs(p - track.scrollLeft) < Math.abs(points[best] - track.scrollLeft) ? i : best),
+          0
+        );
+        const bounds = track.getBoundingClientRect();
+        const shown = cards
+          .map((card, i) => ({ rect: card.getBoundingClientRect(), i }))
+          .filter((s) => {
+            const overlap = Math.min(s.rect.right, bounds.right) - Math.max(s.rect.left, bounds.left);
+            return overlap > Math.min(s.rect.width, bounds.width) * 0.5;
+          });
+        const first = (shown[0] && shown[0].i) || index;
+        const last = (shown[shown.length - 1] && shown[shown.length - 1].i) || index;
+        if (position) {
+          position.textContent = (first === last ? String(first + 1) : first + 1 + '–' + (last + 1)) + ' / ' + cards.length;
+        }
+      }
+
+      function move(delta: number) {
+        const points = stops();
+        index = (index + delta + points.length) % points.length;
+        track.scrollTo({ left: points[index], behavior: motion.matches ? 'instant' : 'smooth' });
+      }
+
+      function schedule() {
+        clearInterval(timer);
+        if (!paused && !hover && !focused && visible && !document.hidden) {
+          timer = setInterval(() => move(1), 6000);
+        }
+      }
+
+      function paint() {
+        if (pause) {
+          pause.setAttribute('aria-pressed', String(paused));
+          pause.setAttribute('aria-label', paused ? pause.dataset.playLabel ?? '' : pause.dataset.pauseLabel ?? '');
+        }
+        schedule();
+      }
+
+      prev && prev.addEventListener('click', () => { move(-1); schedule(); });
+      next && next.addEventListener('click', () => { move(1); schedule(); });
+      pause && pause.addEventListener('click', () => { paused = !paused; paint(); });
+      track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+      track.addEventListener('keydown', (e: Event) => {
+        const key = (e as KeyboardEvent).key;
+        if (e.target === track && (key === 'ArrowLeft' || key === 'ArrowRight')) {
+          (e as KeyboardEvent).preventDefault();
+          move(key === 'ArrowRight' ? 1 : -1);
+          schedule();
+        }
+      });
+      root.addEventListener('mouseenter', () => { hover = true; schedule(); });
+      root.addEventListener('mouseleave', () => { hover = false; schedule(); });
+      root.addEventListener('focusin', () => { focused = true; schedule(); });
+      root.addEventListener('focusout', (e: Event) => {
+        focused = !root.contains((e as FocusEvent).relatedTarget as Node | null);
+        schedule();
+      });
+      track.addEventListener('pointerdown', () => { if (timer !== undefined) clearInterval(timer); }, { passive: true });
+      track.addEventListener('pointerup', schedule, { passive: true });
+      document.addEventListener('visibilitychange', schedule);
+      motion.addEventListener('change', () => { paused = motion.matches; paint(); });
+      new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; schedule(); }, { threshold: 0.3 }).observe(root);
+      new ResizeObserver(update).observe(track);
+      update();
+      paint();
+    });
+  </script>
+</Layout>

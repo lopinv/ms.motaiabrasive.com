@@ -1,0 +1,453 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE, productCategories } from '../data/site';
+import { models } from '../data/models';
+
+const breadcrumbs = [
+  { name: 'Laman utama', href: '/' },
+  { name: 'Minta sebut harga', href: '/quote' },
+];
+
+const selectedProduct = Astro.url.searchParams.get('product') ?? '';
+const selectedModel = models.find((model) => model.slug === selectedProduct);
+const initialCategory = selectedModel?.categorySlug ?? '';
+
+const steps = [
+  { id: 'product', title: 'Produk', hint: 'Produk apa yang diperlukan?' },
+  { id: 'spec', title: 'Spesifikasi', hint: 'Saiz & kuantiti' },
+  { id: 'delivery', title: 'Bekalan', hint: 'Lokasi & kekerapan' },
+  { id: 'contact', title: 'Hubungan', hint: 'Untuk sebut harga & maklum balas' },
+];
+---
+
+<Layout
+  title="Minta Sebut Harga Bahan Penggera | Kilang MoTai"
+  description="Hantar permintaan sebut harga MoTai dalam 4 langkah: pilih produk, tentukan spesifikasi & kuantiti, nyatakan lokasi & kekerapan, tinggalkan maklumat hubungan. Sebut harga jelas dalam 1 hari bekerja."
+  image="/images/factory.jpg"
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <div class="quote-funnel">
+    <header class="funnel__head">
+      <div class="container">
+        <div class="funnel__intro">
+          <span class="eyebrow eyebrow--light">Minta sebut harga · 4 langkah</span>
+          <h1>Maklumkan apa yang anda perlukan, kami membalas dengan sebut harga yang jelas</h1>
+          <p>
+            Langkah direka ringkas. Lengkapkan medan wajib di setiap langkah, biarkan kosong apa yang
+            tidak berkenaan — kami meneliti spesifikasi dan kembali bertanya jika perlu sebelum
+            menghantar sebut harga.
+          </p>
+        </div>
+
+        <ol class="funnel__progress" data-funnel-progress>
+          {
+            steps.map((step, index) => (
+              <li class:list={{ 'is-active': index === 0 }} data-step={index}>
+                <span class="funnel__progress-num">{String(index + 1).padStart(2, '0')}</span>
+                <span class="funnel__progress-text">
+                  <strong>{step.title}</strong>
+                  <small>{step.hint}</small>
+                </span>
+                {index < steps.length - 1 && <span class="funnel__progress-bar" aria-hidden="true"></span>}
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </header>
+
+    <div class="container funnel__body">
+      <form
+        class="funnel-form"
+        action="https://form.lopins.cn/lopinx@duck.com/ad7aa0dd52e0afa55f85f7b2"
+        method="POST"
+        data-funnel-form
+      >
+        <input type="hidden" name="_subject" value="Minta Sebut Harga - MoTai Abrasives" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="/thankyou" />
+        <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        
+        <section class="funnel-step" data-panel="0" aria-labelledby="step-title-0">
+          <div class="funnel-step__head">
+            <span class="funnel-step__num">01</span>
+            <div>
+              <h2 id="step-title-0">Kumpulan produk mana yang diperlukan?</h2>
+              <p>Pilih kumpulan yang sepadan dengan aplikasi anda, kemudian tentukan saiz jika sudah diketahui.</p>
+            </div>
+          </div>
+
+          <div class="quickpick quickpick--4" role="radiogroup" aria-label="Kumpulan produk" data-quickpick="category">
+            {
+              productCategories.map((product) => (
+                <label class:list={['quickpick__item']} data-choice>
+                  <input
+                    type="radio"
+                    name="product_category"
+                    value={product.name}
+                    required
+                    checked={initialCategory === product.slug}
+                  />
+                  <span class="quickpick__item-label">
+                    <strong>{product.name}</strong>
+                    <small>{product.applications.slice(0, 2).join(' · ')}</small>
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+
+          <label class="field field--full">
+            <span>Saiz khusus (jika sudah diketahui)</span>
+            <select name="model_slug" data-model-select>
+              <option value="">Belum ditentukan — saya akan nyatakan spesifikasi kemudian</option>
+              {
+                models.map((model) => (
+                  <option value={model.name} selected={model.slug === selectedProduct}>
+                    {model.name} — {model.sizeLabel}
+                  </option>
+                ))
+              }
+            </select>
+          </label>
+        </section>
+
+        
+        <section class="funnel-step" data-panel="1" aria-labelledby="step-title-1" hidden>
+          <div class="funnel-step__head">
+            <span class="funnel-step__num">02</span>
+            <div>
+              <h2 id="step-title-1">Berapa gredan dan kuantiti?</h2>
+              <p>Pilih gredan terdekat dengan keperluan anda — kami akan mengesahkan gredan tepat sebelum pengeluaran.</p>
+            </div>
+          </div>
+
+          <div class="quickpick quickpick--4" role="radiogroup" aria-label="Gredan" data-quickpick="grit">
+            <label class="quickpick__item">
+              <input type="radio" name="grit" value="Kasar (36-80)" required />
+              <span class="quickpick__item-label">
+                <strong>Kasar 36–80</strong>
+                <small>Menyingkiskan oksida dan cat dengan pantas</small>
+              </span>
+            </label>
+            <label class="quickpick__item">
+              <input type="radio" name="grit" value="Sederhana (100-180)" />
+              <span class="quickpick__item-label">
+                <strong>Sederhana 100–180</strong>
+                <small>Penggeraan am & pengurangan ketebalan</small>
+              </span>
+            </label>
+            <label class="quickpick__item">
+              <input type="radio" name="grit" value="Halus (220-400)" />
+              <span class="quickpick__item-label">
+                <strong>Halus 220–400</strong>
+                <small>Penghabisan & persediaan sebelum pelaburan</small>
+              </span>
+            </label>
+            <label class="quickpick__item">
+              <input type="radio" name="grit" value="Ultra halus (500+)" />
+              <span class="quickpick__item-label">
+                <strong>Ultra halus 500–5000</strong>
+                <small>Pembikinan akhir & pengilapan</small>
+              </span>
+            </label>
+          </div>
+
+          <div class="funnel-fields">
+            <label class="field">
+              <span>Kuantiti diperlukan *</span>
+              <input name="quantity" type="text" required placeholder="Contoh: 5000 tali / 100 kotak" />
+            </label>
+
+            <label class="field">
+              <span>Memerlukan OEM atau pembungkusan khas?</span>
+              <select name="oem">
+                <option value="Tidak">Tidak, bekalan biasa</option>
+                <option value="Ya, jenama sendiri">Ya, jenama sendiri</option>
+                <option value="Sedang meneliti">Sedang meneliti</option>
+              </select>
+            </label>
+
+            <label class="field field--full">
+              <span>Bahan pembikinan & hasil penghabisan yang diingini *</span>
+              <textarea name="application" rows="3" required placeholder="Terangkan bahan (kayu, aluminium, keluli) dan hasil yang diperlukan (karat, kilat, sebelum pelaburan)."></textarea>
+            </label>
+
+            <label class="field field--full">
+              <span>Mesin & cara pelekatan</span>
+              <input name="machine" type="text" placeholder="Siri mesin, jenis sambungan atau sistem pelekatan" />
+            </label>
+          </div>
+        </section>
+
+        
+        <section class="funnel-step" data-panel="2" aria-labelledby="step-title-2" hidden>
+          <div class="funnel-step__head">
+            <span class="funnel-step__num">03</span>
+            <div>
+              <h2 id="step-title-2">Dihantar ke mana, dengan kadar berapa?</h2>
+              <p>Lokasi dan kekerapan pesanan menentukan rancangan penghantaran dan terma bekalan dalam sebut harga.</p>
+            </div>
+          </div>
+
+          <div class="funnel-fields">
+            <label class="field">
+              <span>Negara penghantaran *</span>
+              <select name="destination" data-destination-select required>
+                <option value="" disabled selected>Pilih negara</option>
+                <option>Saudi Arabi</option>
+                <option>Emiriah Arab Bersatu</option>
+                <option>Kuwait</option>
+                <option>Qatar</option>
+                <option>Bahrain</option>
+                <option>Oman</option>
+                <option>Mesir</option>
+                <option>Sudan</option>
+                <option>Algeria</option>
+                <option>Tunisia</option>
+                <option>Morocco</option>
+                <option>Jordan</option>
+                <option>Lebanon</option>
+                <option>Syria</option>
+                <option>Iraq</option>
+                <option>Yaman</option>
+                <option>Palestin</option>
+                <option>Negara lain</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Kekerapan pesanan yang dijangkakan</span>
+              <select name="frequency">
+                <option value="Pesanan uji / Sampel">Pesanan uji / Sampel</option>
+                <option value="Satu kali">Satu kali</option>
+                <option value="Bekalan berkala bulanan">Bekalan berkala bulanan</option>
+                <option value="Bekalan berkala suku tahunan">Bekalan berkala suku tahunan</option>
+              </select>
+            </label>
+
+            <label class="field field--full">
+              <span>Nota: Penghantaran, syarat pemeriksaan, atau permintaan khas</span>
+              <textarea name="notes" rows="3" placeholder="Contoh: Perlu sijil pematuhan setiap lot, hantar dalam 45 hari."></textarea>
+            </label>
+          </div>
+        </section>
+
+        
+        <section class="funnel-step" data-panel="3" aria-labelledby="step-title-3" hidden>
+          <div class="funnel-step__head">
+            <span class="funnel-step__num">04</span>
+            <div>
+              <h2 id="step-title-3">Bagaimana kami menghubungi anda?</h2>
+              <p>Kami menghantar sebut harga komersial melalui saluran anda pilih. Data anda tidak digunakan untuk tujuan lain.</p>
+            </div>
+          </div>
+
+          <div class="funnel-fields">
+            <label class="field">
+              <span>Nama penuh *</span>
+              <input name="name" type="text" required autocomplete="name" placeholder="Nama dan nama keluarga" />
+            </label>
+
+            <label class="field">
+              <span>Syarikat *</span>
+              <input name="company" type="text" required autocomplete="organization" placeholder="Nama syarikat" />
+            </label>
+
+            <label class="field">
+              <span>Emel *</span>
+              <input name="email" type="email" required autocomplete="email" placeholder="nama@syarikat.com" dir="ltr" />
+            </label>
+
+            <label class="field">
+              <span>WhatsApp / Telefon *</span>
+              <input name="phone" type="tel" required autocomplete="tel" placeholder="Nombor dengan kod negara" dir="ltr" />
+            </label>
+          </div>
+
+          <div class="quickpick quickpick--3" role="radiogroup" aria-label="Bahasa hubungan keutamaan" data-quickpick="lang">
+            <label class="quickpick__item">
+              <input type="radio" name="preferred_contact" value="WhatsApp / Bahasa Melayu" checked />
+              <span class="quickpick__item-label">
+                <strong>WhatsApp — Bahasa Melayu</strong>
+                <small>Maklum balas paling pantas melalui sembang</small>
+              </span>
+            </label>
+            <label class="quickpick__item">
+              <input type="radio" name="preferred_contact" value="Email" />
+              <span class="quickpick__item-label">
+                <strong>Emel</strong>
+                <small>Sesuai fail & perincian</small>
+              </span>
+            </label>
+            <label class="quickpick__item">
+              <input type="radio" name="preferred_contact" value="Telefon / English" />
+              <span class="quickpick__item-label">
+                <strong>Telefon — English</strong>
+                <small>Untuk panggilan terus</small>
+              </span>
+            </label>
+          </div>
+
+          <label class="funnel-consent">
+            <input name="consent" type="checkbox" required />
+            <span>Saya bersetuju data ini digunakan untuk membalas permintaan, mengikut <a href="/privacy">Polisi Privasi</a>.</span>
+          </label>
+
+          <label class="field field--full" data-return-url-field>
+            <span>Pautan halaman untuk dikembalikan setelah hantar (pilihan)</span>
+            <input name="return_url" type="url" placeholder="https://ms.motaiabrasive.com/products/flap-discs" dir="ltr" />
+            <small class="fine-print">Jika dibiarkan kosong, akan ke halaman terima kasih, atau isi pautan pada domain yang sama.</small>
+          </label>
+        </section>
+
+        
+        <div class="funnel-actions">
+          <button class="button button--outline" type="button" data-funnel-prev disabled>Sebelum</button>
+          <span class="funnel-actions__hint" data-funnel-hint>Langkah 1 daripada 4</span>
+          <div class="funnel-actions__next">
+            <button class="button button--primary" type="button" data-funnel-next>Seterusnya</button>
+            <button class="button button--accent" type="submit" data-funnel-submit hidden>
+              Hantar permintaan sebut harga
+            </button>
+          </div>
+        </div>
+
+        <div class="funnel-status" data-funnel-status role="status" aria-live="polite"></div>
+      </form>
+
+      
+      <aside class="funnel-aside">
+        <div class="funnel-card">
+          <h2 class="funnel-card__title">Ingin saluran yang lebih pantas?</h2>
+          <p>Hantar terus melalui WhatsApp atau emel, tiada borang diperlukan.</p>
+          <a class="button button--whatsapp button--block" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener nofollow">
+            WhatsApp Terus
+          </a>
+          <a class="button button--outline button--block" href={`mailto:${SITE.email}`} dir="ltr">{SITE.email}</a>
+        </div>
+
+        <div class="funnel-card funnel-card--soft">
+          <h2 class="funnel-card__title">Apa yang berlaku setelah hantar?</h2>
+          <ol class="funnel-pipeline">
+            <li><strong>Penilaian awal</strong><span>Pemeriksaan kesempurnaan spesifikasi, mungkin soalan teknikal ringkas.</span></li>
+            <li><strong>Sebut harga komersial</strong><span>Harga, MOQ, terma pembungkusan & bekalan.</span></li>
+            <li><strong>Sampel / Pembentangan</strong><span>Jika sampel atau sijil diminta, disusun dalam proses.</span></li>
+          </ol>
+          <p class="fine-print">
+            Setelah hantar berjaya, akan ke halaman <a href="/thankyou">pengesahan terima</a>
+            — isi pautan halaman anda pada medan pilihan langkah terakhir untuk kembali terus.
+          </p>
+        </div>
+
+        <div class="funnel-card funnel-card--meta">
+          <h2 class="funnel-card__title">Untuk rujukan</h2>
+          <dl class="spec-dl">
+            <div><dt>Maklum balas</dt><dd>Dalam 1 hari bekerja</dd></div>
+            <div><dt>Kilang</dt><dd dir="ltr">Xianning, Hubei, CN</dd></div>
+            <div><dt>Bahasa</dt><dd dir="ltr">Bahasa Melayu · EN · Cina</dd></div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    const form = document.querySelector('[data-funnel-form]');
+    const steps = form ? [...form.querySelectorAll<HTMLElement>('[data-panel]')] : [];
+    const progressItems = form ? [...form.querySelectorAll<HTMLElement>('[data-step]')] : [];
+    const prevBtn = form?.querySelector<HTMLButtonElement>('[data-funnel-prev]');
+    const nextBtn = form?.querySelector<HTMLButtonElement>('[data-funnel-next]');
+    const submitBtn = form?.querySelector<HTMLButtonElement>('[data-funnel-submit]');
+    const hint = form?.querySelector<HTMLElement>('[data-funnel-hint]');
+    const status = form?.querySelector<HTMLElement>('[data-funnel-status]');
+    let current = 0;
+
+    const render = () => {
+      steps.forEach((section, index) => {
+        section.hidden = index !== current;
+      });
+
+      progressItems.forEach((item, index) => {
+        item.classList.toggle('is-active', index === current);
+        item.classList.toggle('is-done', index < current);
+      });
+
+      if (prevBtn) prevBtn.disabled = current === 0;
+      if (hint) hint.textContent = `Langkah ${current + 1} daripada ${steps.length}`;
+      if (nextBtn) nextBtn.hidden = current === steps.length - 1;
+      if (submitBtn) submitBtn.hidden = current !== steps.length - 1;
+    };
+
+    const validForCurrent = () => {
+      const section = steps[current];
+      if (!section) return true;
+      const inputs = section.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+        'input:not([type="hidden"]):not(.honeypot), select, textarea'
+      );
+
+      for (const input of inputs) {
+        if (input.type === 'radio') {
+          const group = section.querySelectorAll<HTMLInputElement>(`input[name="${input.name}"]`);
+          const anyChecked = [...group].some((item) => item.checked);
+          if (!anyChecked) return false;
+        } else if (input.required && !input.reportValidity()) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    nextBtn?.addEventListener('click', () => {
+      if (!validForCurrent()) {
+        (form as HTMLFormElement)?.reportValidity?.();
+        return;
+      }
+
+      current = Math.min(current + 1, steps.length - 1);
+      render();
+      form?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      current = Math.max(current - 1, 0);
+      render();
+    });
+
+    const returnUrl = form?.querySelector<HTMLInputElement>('[name="return_url"]');
+    const nextField = form?.querySelector<HTMLInputElement>('[name="_next"]');
+
+    form?.addEventListener('submit', (event) => {
+      if (!(form as HTMLFormElement).checkValidity()) {
+        event.preventDefault();
+        (form as HTMLFormElement).reportValidity();
+        return;
+      }
+
+      // Selepas hantar: lalai /thankyou; ada return_url pada domain sama maka /thankyou?from=<sumber> (semak domain sama elak pengalihan terbuka)
+      if (returnUrl && nextField) {
+        const raw = returnUrl.value.trim();
+        if (raw) {
+          try {
+            const u = new URL(raw, location.origin);
+            const target = u.pathname + u.search;
+            if (u.origin === location.origin && target !== '/') {
+              nextField.value = `/thankyou?from=${encodeURIComponent(target)}`;
+            }
+          } catch {
+            /* URL tidak sah → kekalkan lalai /thankyou */
+          }
+        }
+      }
+
+      if (status) status.textContent = 'Sedang menghantar permintaan…';
+    });
+
+    render();
+  </script>
+</Layout>

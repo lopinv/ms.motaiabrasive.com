@@ -1,0 +1,159 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { productCategories } from '../../data/site';
+import { models } from '../../data/models';
+
+const beltModels = models.filter((model) => model.categorySlug === 'abrasive-belts');
+const discModels = models.filter((model) => model.categorySlug === 'sanding-discs');
+---
+
+<Layout
+  title="Produk bahan penggera | Tali, cakera dan spons | MoTai"
+  description="Terokai tali penggera, cakera Flap, cakera jaring dan spons penggera MoTai, bersama spesifikasi, aplikasi dan pilihan tersuai untuk membantu menetapkan produk yang sesuai."
+  image="/images/workshop.jpg"
+>
+  <section class="page-hero page-hero--products">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Katalog produk</span>
+      <h1>Bahan penggera yang direka untuk talian pengeluaran yang lebih stabil</h1>
+      <p>
+        Pilih kategori produk, kemudian tinjau aplikasi, spesifikasi dan pilihan yang tersedia.
+        Jika belum pasti, hantar jenis bahan pembikinan dan kaedah operasi anda, kami akan
+        membantu menetapkan spesifikasi.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="catalog-grid">
+        {
+          productCategories.map((product, index) => (
+            <article class="catalog-card">
+              <div class="catalog-card__media">
+                <img src={product.image} alt={`MoTai ${product.name}`} width="560" height="420" loading="lazy" />
+                <span class="catalog-card__number">0{index + 1}</span>
+              </div>
+              <div class="catalog-card__body">
+                <h2><a href={`/products/${product.slug}`}>{product.name}</a></h2>
+                <p>{product.description}</p>
+                <h3>Sesuai untuk</h3>
+                <ul class="check-list">
+                  {product.applications.map((application) => <li>{application}</li>)}
+                </ul>
+                <a class="button button--outline button--small" href={`/products/${product.slug}`}>
+                  Spesifikasi penuh
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="model-browser" data-model-browser>
+        <div class="section-heading section-heading--split">
+          <div>
+            <span class="eyebrow">Saiz tersedia</span>
+            <h2>Cari saiz yang sepadan dengan mesin anda</h2>
+          </div>
+          <label class="model-search">
+            <span class="sr-only">Cari mengikut saiz atau kumpulan</span>
+            <input type="search" placeholder="Contoh: 533, 1520, 6 inci, Hook & Loop" data-model-search />
+          </label>
+        </div>
+
+        <div class="model-filters" role="group" aria-label="Tapis mengikut kumpulan produk">
+          <button class="model-filter is-active" type="button" data-model-filter="all">Semua ({models.length})</button>
+          <button class="model-filter" type="button" data-model-filter="belt">Tali penggera ({beltModels.length})</button>
+          <button class="model-filter" type="button" data-model-filter="disc">Cakera penggera ({discModels.length})</button>
+        </div>
+
+        <p class="model-count" data-model-count aria-live="polite">Mempaparkan {models.length} saiz</p>
+
+        <div class="model-table" data-model-table>
+          <div class="model-table__head" aria-hidden="true">
+            <span>Saiz</span><span>Kumpulan</span><span>Gredan</span><span>Cara pelekatan</span><span></span>
+          </div>
+          {
+            models.map((model) => (
+              <a class="model-row" href={`/products/models/${model.slug}`} data-model-group={model.type} data-model-text={`${model.name} ${model.sizeLabel} ${model.family}`.toLowerCase()}>
+                <span class="model-row__name">{model.name}</span>
+                <span class="model-row__family">{model.family}</span>
+                <span class="model-row__grit">{model.gritRange.length} gred · {model.gritRange[0]}–{model.gritRange[model.gritRange.length - 1]}</span>
+                <span class="model-row__attachment">{model.attachment}</span>
+                <span class="model-row__cta">Perincian →</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <p class="model-empty" data-model-empty hidden> Tiada saiz yang sepadan dengan carian anda. Cuba kata kunci lain atau hantar spesifikasi anda kepada kami melalui borang pertanyaan.</p>
+      </div>
+
+      <div class="catalog-guide">
+        <div>
+          <span class="eyebrow">Belum pasti spesifikasi mana yang sesuai?</span>
+          <h2>Mulakan dari aplikasi anda, bukan dari nama produk</h2>
+          <p>
+            Maklumkan kepada kami bahan pembikinan, mesin yang digunakan dan jenis penghabisan
+            yang diperlukan. Kami membantu menetapkan bentuk alatan, partikel dan asas, kemudian
+            menghantar sebut harga yang jelas kepada anda.
+          </p>
+        </div>
+        <div class="catalog-guide__steps">
+          <div><strong>01</strong><span>Pilih industri</span></div>
+          <div><strong>02</strong><span>Tinjau cadangan produk</span></div>
+          <div><strong>03</strong><span>Hantar spesifikasi dan kuantiti</span></div>
+        </div>
+        <div class="catalog-guide__actions">
+          <a class="button button--primary" href="/industries">Terokai penyelesaian</a>
+          <a class="button button--outline" href="/resources/abrasive-grit-guide">Panduan gredan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Anda mahu membanding spesifikasi pelbagai produk?"
+    text="Hantar senarai produk, saiz dan kuantiti. Kami meninjau dan menghantar sebut harga bersatu supaya lebih mudah untuk pasukan pembekalan membandingkan."
+  />
+
+  <script>
+    const browser = document.querySelector('[data-model-browser]');
+    if (browser) {
+      const search = browser.querySelector<HTMLInputElement>('[data-model-search]');
+      const rows = [...browser.querySelectorAll<HTMLElement>('[data-model-group]')];
+      const filters = [...browser.querySelectorAll<HTMLButtonElement>('[data-model-filter]')];
+      const count = browser.querySelector<HTMLElement>('[data-model-count]');
+      const empty = browser.querySelector<HTMLElement>('[data-model-empty]');
+      let activeGroup = 'all';
+
+      const apply = () => {
+        const term = search?.value.trim().toLowerCase() ?? '';
+        let visible = 0;
+
+        for (const row of rows) {
+          const matchesGroup = activeGroup === 'all' || row.dataset.modelGroup === activeGroup;
+          const matchesTerm = !term || (row.dataset.modelText ?? '').includes(term);
+          const show = matchesGroup && matchesTerm;
+          row.hidden = !show;
+          if (show) visible += 1;
+        }
+
+        if (count) count.textContent = `Mempaparkan ${visible} saiz`;
+        if (empty) empty.hidden = visible > 0;
+      };
+
+      search?.addEventListener('input', apply);
+
+      for (const filter of filters) {
+        filter.addEventListener('click', () => {
+          activeGroup = filter.dataset.modelFilter ?? 'all';
+          filters.forEach((item) => item.classList.toggle('is-active', item === filter));
+          apply();
+        });
+      }
+    }
+  </script>
+</Layout>

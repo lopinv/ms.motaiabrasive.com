@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  productFamily?: string;
+  industry?: string;
+  limit?: number;
+}
+
+const { productFamily, industry, limit = 3 } = Astro.props;
+
+const allArticles = await getCollection('articles');
+
+const categoryLabels: Record<string, string> = {
+  'product-comparison': 'Perbandingan Produk',
+  'multi-product-comparison': 'Perbandingan Multi Produk',
+  'buying-guide': 'Panduan Pembelianan',
+  'technical-guide': 'Panduan Teknikal',
+  'application-guide': 'Panduan Aplikasi',
+  'process-tutorial': 'Panduan Proses',
+  troubleshooting: 'Penyelesaian Masalah',
+  'product-spec-detail': 'Perinci Spesifikasi',
+  'procurement-guide': 'Panduan Pembekalan',
+  'wholesale-oem-guide': 'Borong dan OEM',
+  'industry-market': 'Pasaran Industri',
+  'gcc-regional-sourcing': 'Pembekalan Wilayah GCC',
+  'faq-buyers-guide': 'Soalan Pembeli',
+};
+
+const related = allArticles
+  .filter(
+    (a) =>
+      (productFamily && a.data.productFamily === productFamily) ||
+      (industry && a.data.industry === industry),
+  )
+  .slice(0, limit)
+  .map((a) => ({
+    id: a.id,
+    title: a.data.title,
+    description: a.data.description,
+    category: a.data.category,
+  }));
+---
+
+{
+  related.length > 0 && (
+    <div class="content-block">
+      <span class="eyebrow">Bài viết liên quan</span>
+      <h2>Đọc thêm</h2>
+      <div class="article-related-list">
+        {related.map((rel) => (
+          <a class="article-related-item" href={`/articles/${rel.id}`}>
+            <span class="article-related-tag">{categoryLabels[rel.category] ?? rel.category}</span>
+            <strong>{rel.title}</strong>
+            <p>{rel.description.slice(0, 130)}…</p>
+          </a>
+        ))}
+      </div>
+      <a class="text-link" href="/articles" style="margin-block-start: 16px; display: inline-flex;">
+        Tất cả bài viết <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  )
+}

@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { resources } from '../../data/site';
+---
+
+<Layout
+  title="Sumber teknikal dan panduan bekalan bahan penggera | MoTai"
+  description="Panduan praktikal tentang pemilihan gredan, persediaan permintaan OEM dan pembungkusan. Sumber teknikal membantu pembeli bahan penggera menetapkan spesifikasi yang tepat sebelum meminta sebut harga."
+  image="/images/grit-reference.png"
+>
+  <section class="page-hero page-hero--resources">
+    <div class="container page-hero__inner">
+      <span class="eyebrow eyebrow--light">Pusat sumber</span>
+      <h1>Pengetahuan teknikal membantu anda mempersiapkan permintaan yang lebih baik</h1>
+      <p>
+        Panduan praktikal untuk pasukan pembekalan dan operasi: maklumat untuk menyediakan spesifikasi,
+        membandingkan pilihan dan menjelaskan apa yang kami perlukan untuk menukar pertanyaan
+        menjadi sebut harga yang jelas.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="resource-grid">
+        {
+          resources.map((resource) => (
+            <article class="resource-card">
+              <a class="resource-card__media" href={`/resources/${resource.slug}`}>
+                <img src={resource.image} alt="" width="520" height="340" loading="lazy" />
+                <span>{resource.type}</span>
+              </a>
+              <div class="resource-card__body">
+                <h2><a href={`/resources/${resource.slug}`}>{resource.title}</a></h2>
+                <p>{resource.description}</p>
+                <ul class="resource-card__topics">
+                  {resource.sections.map((section) => <li>{section.title}</li>)}
+                </ul>
+                <a class="text-link" href={`/resources/${resource.slug}`}>Baca panduan <span>→</span></a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="knowledge-hub">
+        <div class="knowledge-hub__intro">
+          <span class="eyebrow">Pusat pengetahuan</span>
+          <h2>Dari maklumat ke spesifikasi yang boleh dibekalkan</h2>
+          <p>
+            Susun permintaan anda seperti ini: tentukan produk, kemudian kaedah operasi,
+            diikuti kuantiti dan lokasi penghantaran. Dengan data ini, perbandingan antara
+            sebut harga akan lebih pantas dan jelas.
+          </p>
+        </div>
+        <div class="knowledge-hub__grid">
+          <a href="/products/abrasive-belts"><strong>Rujukan tali penggera</strong><span>Saiz & cara pelekatan →</span></a>
+          <a href="/products/flap-discs"><strong>Rujukan cakera penggera</strong><span>Diameter & asas →</span></a>
+          <a href="/industries"><strong>Rujukan industri</strong><span>Cadangan mengikut aplikasi →</span></a>
+          <a href="/quality"><strong>Rujukan pemeriksaan</strong><span>Titik semakan setiap lot →</span></a>
+          <a href="/technical-specs"><strong>Spesifikasi teknikal</strong><span>Jadual FEPA & asas →</span></a>
+          <a href="/shipping-oem"><strong>Bekalan & OEM</strong><span>Fasa penghantaran & pembungkusan →</span></a>
+          <a href="/articles"><strong>Artikel teknikal</strong><span>Pustaka pengetahuan →</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Tukar panduan kepada sebut harga" text="Hantar spesifikasi yang telah anda sediakan, kami akan meninjau dan membalas dengan perincian yang sesuai." />
+</Layout>
