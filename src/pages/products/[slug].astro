@@ -28,7 +28,7 @@ const productJsonLd = {
   description: product.description,
   image: new URL(product.image, Astro.site).href,
   brand: { '@type': 'Brand', name: 'MoTai Abrasives' },
-  category: 'Bahan Ampelas',
+  category: 'Bahan amplas',
   additionalProperty: product.specs.map(([name, value]) => ({
     '@type': 'PropertyValue',
     name,
@@ -95,7 +95,7 @@ const faqJsonLd = {
           <ul class="check-list check-list--large">
             <li>Pilih bentuk dan saiz yang sepadan dengan mesin dan cara pelekatan.</li>
             <li>Tetapkan gred atau jenis bahan mengikut fasa pengampelasan dan penghabisan.</li>
-            <li>Tinjau jenis asas dan kesesuaian dengan peralatan pembeli.</li>
+            <li>Tinjau tapak dan kesesuaian dengan peralatan pembeli.</li>
             <li>Kelulusan kuantiti dan pembungkusan sebelum beralih ke pesanan pengeluaran.</li>
           </ul>
         </div>
@@ -122,7 +122,7 @@ const faqJsonLd = {
           <span class="eyebrow">Saiz tersedia</span>
           <h2>Pilih saiz yang sepadan dengan mesin anda</h2>
           <p>
-            Setiap saiz menyatakan gred yang tersedia, jenis asas dan cara pelekatan, supaya anda
+            Setiap saiz menyatakan gred yang tersedia, tapak dan cara pelekatan, supaya anda
             boleh mempersedia permintaan sebut harga tanpa andaian.
           </p>
           <div class="model-list">

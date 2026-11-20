@@ -34,7 +34,7 @@ const productJsonLd = {
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Saiz', value: model.sizeAr },
     { '@type': 'PropertyValue', name: 'Gred', value: model.gritRange.join(', ') },
-    { '@type': 'PropertyValue', name: 'Jenis asas', value: model.backing },
+    { '@type': 'PropertyValue', name: 'Jenis tapak', value: model.backing },
     { '@type': 'PropertyValue', name: 'Cara pelekatan', value: model.attachment },
   ],
 };
@@ -96,7 +96,7 @@ const faqJsonLd = {
           </p>
           <ul class="check-list check-list--large">
             <li>Saiz: <strong>{model.sizeAr}</strong></li>
-            <li>Jenis asas: {model.backing}</li>
+            <li>Jenis tapak: {model.backing}</li>
             <li>Cara pelekatan: {model.attachment}</li>
           </ul>
         </div>
@@ -106,7 +106,7 @@ const faqJsonLd = {
           <h2>Gred mana yang sesuai dengan fasa anda?</h2>
           <p>
             Kami senaraikan {model.gritRange.length} gred yang tersedia untuk saiz ini. Pemilihan
-            yang tepat bergantung pada bahan pembuatan, tekanan dan halaju makan, jadi kami menghantar
+            yang tepat bergantung pada bahan pembuatan, tekanan dan halaju suapan, jadi kami menghantar
             sampel dahulu sebelum kelulusan kuantiti apabila diperlukan.
           </p>
           <ul class="grit-grid" aria-label="Gred yang tersedia">
@@ -119,7 +119,7 @@ const faqJsonLd = {
               <tbody>
                 <tr><th scope="row">Saiz</th><td>{model.sizeAr}</td></tr>
                 <tr><th scope="row">Gred</th><td>{model.gritRange.join(', ')}</td></tr>
-                <tr><th scope="row">Jenis asas</th><td>{model.backing}</td></tr>
+                <tr><th scope="row">Jenis tapak</th><td>{model.backing}</td></tr>
                 <tr><th scope="row">Cara pelekatan</th><td>{model.attachment}</td></tr>
                 <tr><th scope="row">Kumpulan produk</th><td>{model.family}</td></tr>
               </tbody>

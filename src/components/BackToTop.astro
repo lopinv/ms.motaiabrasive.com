@@ -73,7 +73,7 @@
 </style>
 
 <script>
-  // 回到顶部：滚动 >600px 显示；点击平滑回顶（reduced-motion 时即时）
+  // Balik ke atas: paparkan apabila skrol melebihi 600px; klik untuk naik lancar (sertika jika reduced-motion)
   const btn = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
   if (btn) {
     const motion = matchMedia('(prefers-reduced-motion: reduce)');

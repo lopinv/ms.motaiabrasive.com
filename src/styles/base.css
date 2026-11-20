@@ -1,9 +1,10 @@
 /* ============================================================
-   工业 B2B 设计令牌 — MoTai Abrasives
-   视觉语言：深钢蓝 + 赤橙磨料红 + 铜金强调，高对比
+   Token reka bentuk B2B industri — MoTai Abrasives
+   Bahasa visual: biru keluli pekat + merah jingga amplas +
+   aksen tembaga emas, kontras tinggi
    ============================================================ */
 :root {
-  /* 中性色：冷调钢灰（提高文字对比度） */
+  /* Netral: kelabu keluli sejuk (tingkatkan kontras teks) */
   --slate-900: #0d141d;
   --slate-800: #16202c;
   --slate-700: #24313f;
@@ -16,7 +17,7 @@
   --slate-50: #f4f6f9;
   --paper: #ffffff;
 
-  /* 品牌主色：灰调钢蓝（降饱和，沉稳商务） */
+  /* Warna utama jenama: biru keluli bertona kelabu (kepekatan rendah, perniagaan stabil) */
   --brand-900: #0a1520;
   --brand-800: #10202f;
   --brand-700: #1d3a52;
@@ -26,26 +27,26 @@
   --brand-300: #97b3c2;
   --brand-100: #dde5eb;
 
-  /* 强调色：哑光锈土色（去鲜橙，克制有力） */
+  /* Warna aksen: tanah karat berkilau matte (hilangkan jingga terang, cekal tetapi kuat) */
   --clay-700: #8a4a32;
   --clay-600: #a34a28;
   --clay-500: #b85f3a;
   --clay-400: #c98a6b;
   --clay-100: #ecded4;
 
-  /* 金属色：暗黄铜（降亮，工业质感） */
+  /* Warna logam: tembaga gelap (cahaya rendah, tekstur industri) */
   --copper-600: #6d5a2e;
   --copper-500: #8f7a3a;
   --copper-400: #a08948;
   --copper-100: #e6dcc4;
 
-  /* 状态色 */
+  /* Warna keadaan */
   --success-600: #2f6b52;
   --success-100: #dce8e0;
   --danger-600: #a8322a;
   --danger-100: #f0dedb;
 
-  /* 语义变量 */
+  /* Pemboleh ubah semantik */
   --ink: var(--slate-900);
   --ink-2: var(--slate-700);
   --ink-3: #4a5866;
@@ -55,45 +56,45 @@
   --surface: var(--paper);
   --surface-alt: var(--slate-50);
   --surface-sink: var(--slate-100);
-  /* 区块色带（浅色）：相邻区块色差克制，避免突兀跳变 */
+  /* Jalur blok (cahaya): perbezaan blok bersebelahan ditahan, elak lompatan mengejut */
   --band-1: var(--paper);
   --band-2: #f4f6f9;
   --band-3: #e9edf2;
-  /* 卡片表面 */
+  /* Permukaan kad */
   --card: #ffffff;
   --card-hover: #fafbfc;
   --primary: var(--brand-600);
   --primary-hover: var(--brand-500);
   --primary-soft: var(--brand-100);
-  /* 数据条：浅底 + 科技蓝数字，商务克制 */
+  /* Jalur data: latar cahaya + nombor biru teknologi, perniagaan cekal */
   --spec-strip: var(--paper);
   --spec-strip-fg: var(--ink);
   --accent: var(--clay-600);
   --accent-hover: var(--clay-500);
 
-  /* 选中与焦点 */
+  /* Pilihan dan tumpuan */
   --selection-bg: var(--brand-300);
   --focus-ring: 0 0 0 3px rgba(74, 116, 140, 0.35);
 
-  /* 圆角：工业站偏方正 */
+  /* Sudut: stesen industri cenderung tepat */
   --r-xs: 3px;
   --r-sm: 5px;
   --r-md: 8px;
   --r-lg: 12px;
 
-  /* 阴影：克制但更清晰的分层投影 */
+  /* Bayang: cekal tetapi berstrata lebih jelas */
   --sh-1: 0 1px 2px rgba(10, 20, 32, 0.1), 0 1px 1px rgba(10, 20, 32, 0.06);
   --sh-2: 0 2px 6px rgba(10, 20, 32, 0.1), 0 6px 18px rgba(10, 20, 32, 0.08);
   --sh-3: 0 12px 32px rgba(10, 20, 32, 0.16), 0 4px 10px rgba(10, 20, 32, 0.08);
 
-  /* 布局 */
+  /* Susun atur */
   --container: 1320px;
   --header-h: 128px;
   --ease: cubic-bezier(0.25, 0.6, 0.35, 1);
   --ease-fast: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 主题切换：无闪烁过渡 */
+/* Tukar tema: peralihan tanpa kelip-kelip */
 @starting-style {
   :root {
     overflow: hidden;
@@ -104,7 +105,7 @@ html {
   color-scheme: light;
 }
 
-/* 平滑过渡 */
+/* Peralihan lancar */
 :root,
 :root * {
   transition-property: background-color, border-color, color, fill, stroke;
@@ -120,7 +121,7 @@ html {
 }
 
 /* ============================================================
-   基础排版
+   Tipografi asas
    ============================================================ */
 *,
 *::before,
@@ -221,7 +222,7 @@ strong {
   font-weight: 600;
 }
 
-/* 工业站排版细节 */
+/* Butiran tipografi stesen industri */
 .tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum';
@@ -239,7 +240,7 @@ strong {
 }
 
 /* ============================================================
-   布局容器
+   Wadah susun atur
    ============================================================ */
 .container {
   width: 100%;
@@ -260,7 +261,7 @@ strong {
   background: var(--band-2);
 }
 
-/* 科技商务风：整站明亮，无深色内容区块 */
+/* Gaya perniagaan teknologi: seluruh tapak terang, tiada blok kandungan gelap */
 
 .section--band-3 {
   background: var(--band-3);
@@ -274,7 +275,7 @@ strong {
   background: var(--band-3);
 }
 
-/* 工业网格 */
+/* Grid industri */
 .grid {
   display: grid;
   gap: 20px;
@@ -293,7 +294,7 @@ strong {
 }
 
 /* ============================================================
-   标签与节标题
+   Label dan tajuk seksyen
    ============================================================ */
 .eyebrow {
   display: inline-flex;
@@ -369,7 +370,7 @@ strong {
 }
 
 /* ============================================================
-   按钮：工业风格（方正、粗边框、无圆润气泡）
+   Butang: gaya industri (tepat, sempadan tebal, tiada bubble bulat)
    ============================================================ */
 .button {
   position: relative;
@@ -407,11 +408,11 @@ strong {
   box-shadow: var(--focus-ring);
 }
 
-/* 全局焦点环与文本选中色 */
+/* Gelung tumpuan global dan warna teks dipilih */
 :where(a, button, summary, input, select, textarea):focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-  /* 不覆写 border-radius：圆钮（轮播控制/回到顶部）保留自身圆形焦点环 */
+  /* Jangan alihkan border-radius: butang bulat (kawalan karusel / balik ke atas) kekalkan gelung tumpuan bulat sendiri */
 }
 
 ::selection {
@@ -520,7 +521,7 @@ strong {
 }
 
 /* ============================================================
-   表单控件 — 全局
+   Kawalan borang — global
    ============================================================ */
 input,
 select,
@@ -573,7 +574,7 @@ select {
 }
 
 /* ============================================================
-   辅助类
+   Kelas pembantu
    ============================================================ */
 .skip-link {
   position: fixed;
@@ -644,7 +645,7 @@ select {
 }
 
 /* ============================================================
-   响应式与可访问性
+   Responsif dan kebolehcapaian
    ============================================================ */
 @media (max-width: 1080px) {
   .grid-4 {

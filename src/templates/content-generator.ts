@@ -164,7 +164,7 @@ function buildFrontmatter(
     secondaryKeywords: topic.secondaryKeywords,
     longTailKeywords: topic.longTailKeywords,
     searchIntent: topic.searchIntent,
-    featuredImage: model?.image ? `https://ar.motaiabrasive.com${model.image}` : productCat?.image ? `https://ar.motaiabrasive.com${productCat.image}` : undefined,
+    featuredImage: model?.image ? `https://ms.motaiabrasive.com${model.image}` : productCat?.image ? `https://ms.motaiabrasive.com${productCat.image}` : undefined,
     featuredImageAlt: model?.imageAlt || productCat?.name,
     internalLinks,
     externalLinks,
@@ -1113,7 +1113,7 @@ function buildMarketContext(topic: TopicSpec, industry: typeof industries[0] | u
 /**
  * 进口合规（地域寻源篇专用）：按目的国给出真实的监管机构与合规要点，
  * 替代原先误路由的 PPE 安全清单（该清单与进口法规主题无关，属灌水）。
- * 数据全部来自 prompts_ar_gulf.md 第 7 节限定的权威机构（SASO/ESMA/GSO/GSO 各国分支）。
+ * 数据全部来自 prompts_ms.md 第 7 节限定的权威机构（SASO/ESMA/GSO/GSO 各国分支）。
  */
 function buildImportCompliance(gccCountry: typeof gccCountries[0] | undefined): string {
   if (!gccCountry || gccCountry.code === 'general-gcc') return '';

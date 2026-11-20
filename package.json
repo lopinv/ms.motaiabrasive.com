@@ -2,7 +2,7 @@
   "name": "ar-motai-abrasives",
   "version": "1.0.0",
   "private": true,
-  "description": "Laman web rasmi Bahasa Melayu bagi kilang MoTai bahan penggera",
+  "description": "Laman web rasmi Bahasa Melayu bagi kilang MoTai — bekalan terus bahan amplas industri",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

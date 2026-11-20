@@ -67,7 +67,7 @@ const articles = defineCollection({
         z.object({
           type: z.string(),
           title: z.string(),
-          // 兼容两种历史形态：数组（生成模板原意）或逗号拼接字符串（早期落地数据）
+          // Serasi dengan dua bentuk sejarah: array (niat asal templat penjana) atau rentetan dipisahkan koma (data awal)
           content: z.union([z.array(z.unknown()), z.string()]),
         }),
       )

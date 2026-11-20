@@ -15,11 +15,11 @@ const fepaGrades = [
   { p: 'P60', range: 'Kasar', use: 'Penyingkisan cat dan karat' },
   { p: 'P80', range: 'Kasar sederhana', use: 'Persediaan permukaan sebelum penghabisan' },
   { p: 'P100', range: 'Sederhana', use: 'Penghabisan awal untuk plat' },
-  { p: 'P120', range: 'Sederhana halus', use: 'Penyalakan tepi' },
+  { p: 'P120', range: 'Sederhana halus', use: 'Pengampelasan tepi' },
   { p: 'P150', range: 'Halus', use: 'Penghabisan seragam' },
   { p: 'P180', range: 'Halus', use: 'Persediaan sebelum pelakisan' },
   { p: 'P240', range: 'Sangat halus', use: 'Pembuatan akhir awal' },
-  { p: 'P320', range: 'Halus', use: 'Penyalakan antara lapisan cat' },
+  { p: 'P320', range: 'Halus', use: 'Pengampelasan antara lapisan cat' },
   { p: 'P400', range: 'Halus', use: 'Pengilapan awal' },
   { p: 'P600', range: 'Sangat halus', use: 'Pengilapan logam' },
   { p: 'P800', range: 'Ultra halus', use: 'Pembuatan akhir logam' },
@@ -37,7 +37,7 @@ const unitConversions = [
   { from: '6 inci', to: '150 mm', ratio: '6 × 25.4' },
 ];
 
-/*** Jenis asas (fakta industri) ***/
+/*** Jenis tapak (fakta industri) ***/
 const backingTypes = [
   { type: 'Kertas', desc: 'Fleksibel dan ringan, sesuai permukaan rata dan tali nipis. Ketahanan lembapan terbatas.' },
   { type: 'Fabrik (katun/poliester)', desc: 'Tahan dan fleksibel, sesuai tali berat dan aplikasi logam. Tahan haba.' },
@@ -55,14 +55,14 @@ const grainTypes = [
 const specFaq = [
   {
     q: 'Apakah perbezaan gred FEPA P dan CAMI?',
-    a: 'FEPA P ialah standard Eropah/antarabangsa (diterima di kebanyakan dunia, termasuk kawasan ini), manakala CAMI ialah standard Amerika Syarikat. Dua sistem ini tidak selaras sepenuhnya (contoh: P120 ≈ CAMI 120 tetapi P400 ≠ CAMI 400). Nyatakan FEPA P dalam pesanan untuk mengelakkan kekeliruan.',
+    a: 'FEPA P ialah standard Eropah/antarabangsa (diterima di kebanyakan dunia, termasuk kawasan ini), manakala CAMI (Cotton Association of Mutual Interest) ialah standard gred Amerika Syarikat. Dua sistem ini tidak selaras sepenuhnya (contoh: P120 ≈ CAMI 120 tetapi P400 ≠ CAMI 400). Nyatakan FEPA P dalam pesanan untuk mengelakkan kekeliruan.',
   },
   {
     q: 'Jenis partikel mana untuk bahan saya?',
     a: 'Kayu dan kerja biasa: aluminium oksida. Logam keras dan pengampelasan berat: zirkonia. Proses industri berprestasi tinggi: seramik. Batu, kaca dan pembuatan akhir: silikon karbida.',
   },
   {
-    q: 'Jenis asas mana paling sesuai untuk aplikasi saya?',
+    q: 'Jenis tapak mana paling sesuai untuk aplikasi saya?',
     a: 'Permukaan rata dan tali nipis: kertas. Tali berat dan logam: fabrik. Persekitaran lembap atau berat: serabut polimer. Ampelasan dengan penyedutan: jaring terbuka.',
   },
 ];
@@ -79,8 +79,8 @@ const faqJsonLd = {
 ---
 
 <Layout
-  title="Spesifikasi teknikal bahan amplas | Jadual FEPA, asas dan partikel | MoTai"
-  description="Rujukan teknikal lengkap: jadual gred FEPA P penuh, jenis partikel (aluminium oksida/zirkonia/seramik/SiC), jenis asas dan penukaran inci/mm. Data objektif mengikut standard industri antarabangsa."
+  title="Spesifikasi teknikal bahan amplas | Jadual FEPA, tapak dan partikel | MoTai"
+  description="Rujukan teknikal lengkap: jadual gred FEPA P penuh, jenis partikel (aluminium oksida/zirkonia/seramik/SiC), jenis tapak dan penukaran inci/mm. Data objektif mengikut standard industri antarabangsa."
   image="/images/grit-reference.png"
   breadcrumbs={breadcrumbs}
   jsonLd={[faqJsonLd]}
@@ -92,7 +92,7 @@ const faqJsonLd = {
       <span class="eyebrow eyebrow--light">Rujukan teknikal</span>
       <h1>Spesifikasi teknikal bahan amplas</h1>
       <p>
-        Jadual rujukan gred FEPA P, jenis partikel dan asas, penukaran unit —
+        Jadual rujukan gred FEPA P, jenis partikel dan tapak, penukaran unit —
         disusun untuk membantu anda menetapkan spesifikasi yang tepat sebelum meminta sebut harga.
       </p>
     </div>
@@ -155,8 +155,8 @@ const faqJsonLd = {
 
 
       <div class="content-block">
-        <span class="eyebrow">Jenis asas</span>
-        <h2>Asas tali dan cakera</h2>
+        <span class="eyebrow">Jenis tapak</span>
+        <h2>Tapak tali dan cakera</h2>
         <div class="knowledge-hub__grid">
           {backingTypes.map((b) => (
             <div class="sidebar-card">
@@ -180,6 +180,6 @@ const faqJsonLd = {
 
   <CtaBand
     title="Tetapkan spesifikasi anda dengan rujukan ini"
-    text="Pilih gred, jenis partikel dan asas dari jadual di atas, kemudian hantar melalui borang sebut harga untuk kos yang tepat."
+    text="Pilih gred, jenis partikel dan tapak dari jadual di atas, kemudian hantar melalui borang sebut harga untuk kos yang tepat."
   />
 </Layout>
