@@ -339,16 +339,16 @@ export const industries = [
  * Pautan hanya ke halaman produk sebenar dalam tapak web.
  */
 export const applicationScenes = [
-  { title: 'Penghabisan Logam Industri', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-metal-real-1600.jpg?width=900', href: '/products/flap-discs' },
-  { title: 'Ampelasan Plat Kayu', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-wood-real-1600.jpg?width=900', href: '/products/sanding-discs' },
-  { title: 'Persediaan Permukaan Automotif', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-auto-real-1600.jpg?width=900', href: '/products/sanding-discs' },
-  { title: 'Penghabisan Bahagian Logam', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-stainless-real-1600.jpg?width=900', href: '/products' },
-  { title: 'penanggalan karat Sektor Maritim', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-marine-real-1600.jpg?width=900', href: '/products/flap-discs' },
-  { title: 'Pemotongan Logam Dan Penanggalan Tepi', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-surface-real-1600.jpg?width=900', href: '/products/abrasive-belts' },
-  { title: 'Perabot Dan Bentuk Melengkung', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-furniture-real-1600.jpg?width=900', href: '/products/sanding-sponges' },
-  { title: 'Ampelasan Dinding Dan Plat Gipsum', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-drywall-real-1600.jpg?width=900', href: '/products/sanding-discs' },
-  { title: 'Perhiasan Dan Bahagian Tepat', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-precision-real-1600.jpg?width=900', href: '/products/models/psa-disc-3-inch' },
-  { title: 'Ampelasan Tangan Dan Kriya', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-hand-real-1600.jpg?width=900', href: '/products/sanding-sponges' },
+  { title: 'Penghabisan Logam Industri', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-metal-real-1600.jpg?v=1794206413&width=1600', href: '/products/flap-discs' },
+  { title: 'Ampelasan Plat Kayu', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-wood-real-1600.jpg?v=1794206426&width=1600', href: '/products/sanding-discs' },
+  { title: 'Persediaan Permukaan Automotif', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-auto-real-1600.jpg?v=1794206438&width=1600', href: '/products/sanding-discs' },
+  { title: 'Penghabisan Bahagian Logam', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-stainless-real-1600.jpg?v=1794206469&width=1600', href: '/products' },
+  { title: 'Penanggalan Karat Sektor Maritim', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-marine-real-1600.jpg?v=1794206481&width=1600', href: '/products/flap-discs' },
+  { title: 'Pemotongan Logam Dan Penanggalan Tepi', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-surface-real-1600.jpg?v=1794206493&width=1600', href: '/products/abrasive-belts' },
+  { title: 'Perabot Dan Bentuk Melengkung', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-furniture-real-1600.jpg?v=1794206529&width=1600', href: '/products/sanding-sponges' },
+  { title: 'Ampelasan Dinding Dan Plat Gipsum', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-drywall-real-1600.jpg?v=1794206539&width=1600', href: '/products/sanding-discs' },
+  { title: 'Perhiasan Dan Bahagian Tepat', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-precision-real-1600.jpg?v=1794206552&width=1600', href: '/products/models/psa-disc-3-inch' },
+  { title: 'Ampelasan Tangan Dan Kriya', image: 'https://www.motaiabrasive.com/cdn/shop/files/motai-application-hand-real-1600.jpg?v=1794206564&width=1600', href: '/products/sanding-sponges' },
 ] as const;
 
 /**
