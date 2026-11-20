@@ -133,6 +133,16 @@ const graph = [organization, website, breadcrumbSchema, ...jsonLd].filter(Boolea
       />
     </noscript>
     <script type="application/ld+json" set:html={JSON.stringify(graph)} />
+    <!-- GA4 analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SLN397942Q"></script>
+    <script>
+      const dataLayer: unknown[] = ((window as any).dataLayer = (window as any).dataLayer || []);
+      function gtag(...args: unknown[]) {
+        dataLayer.push(args);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-SLN397942Q');
+    </script>
     <slot name="head" />
   </head>
   <body>
