@@ -1,0 +1,13 @@
+{
+  "name": "MoTai bahan penggera",
+  "short_name": "MoTai Abrasives",
+  "lang": "ms",
+  "dir": "ltr",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffdf8",
+  "theme_color": "#0b2b26",
+  "icons": [
+    { "src": "/images/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="MoTai Abrasives">
+  <rect width="512" height="512" rx="96" fill="#0b2b26"/>
+  <path d="M112 352V152h56l88 120 88-120h56v200h-64V248L256 352 176 248v104z" fill="#f4b942"/>
+  <path d="M96 392h320" stroke="#f7f4ec" stroke-width="24" stroke-linecap="round"/>
+</svg>
