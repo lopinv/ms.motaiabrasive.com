@@ -141,7 +141,7 @@ const graph = [organization, website, breadcrumbSchema, ...jsonLd].filter(Boolea
         dataLayer.push(args);
       }
       gtag('js', new Date());
-      gtag('config', 'G-SLN397942Q');
+      gtag('config', 'G-SLN397942Q', { anonymize_ip: true });
     </script>
     <slot name="head" />
   </head>

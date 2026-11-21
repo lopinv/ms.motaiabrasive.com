@@ -11,3 +11,4 @@ dist/
 !.env.example
 __pycache__/
 *.log
+.articles_plan.md
